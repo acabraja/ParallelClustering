@@ -1,4 +1,4 @@
-ParallelClustering
+Parallel algorithm for data clustering
 ==================
 
-Parallel algorithm for data clustering
+

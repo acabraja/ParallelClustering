@@ -1,0 +1,6 @@
+\select@language {croatian}
+\contentsline {chapter}{Sadr\v {z}aj}{iv}{section*.1}
+\contentsline {chapter}{Uvod}{1}{chapter*.2}
+\contentsline {chapter}{\chapternumberline {1}Naslov poglavlja u sadr\IeC {\v z}aju}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Naslov sekcije u sadr\IeC {\v z}aju}{3}{section.1.1}
+\contentsline {subsection}{Naslov podsekcije}{3}{section*.3}
