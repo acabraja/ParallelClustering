@@ -48,14 +48,14 @@
 % uz paket fancyhdr mogu se lako kreirati fancy zaglavlja i podnozja
 
 % Podaci koje treba unijeti
-\title{Naslov}
-\author{Ime Prezime}
-\advisor{Ime Profesora}  % obavezno s titulom (prof. dr. sc ili doc. dr. sc.)
-\date{Godina}  % oblika mjesec, godina
+\title{Paralelni algoritmi za problem grupiranja podataka}
+\author{Anto Čabraja}
+\advisor{prof. dr. sc. Goranka Nogo}  % obavezno s titulom (prof. dr. sc ili doc. dr. sc.)
+\date{srpanj 2014.}  % oblika mjesec, godina
 
 % Moguce je unijeti i posvetu
 % Ukoliko nema posvete, dovoljno je iskomentirati/izbrisati sljedeci redak 
-\dedication{Samom sebi}
+%\dedication{Samom sebi}
 
 \begin{document}
 
@@ -66,15 +66,16 @@
 % Tekst diplomskog ...
 
 % Diplomski rad treba poceti s uvodnim poglavljem  
-\begin{intro}
-...
-\end{intro}
+\chapter*{Uvod}
+\section[Problem grupiranja podataka][PGP]{Problem grupiranja podataka}
+\section[Primjena][primjena]{Primjena}
+\section[Pregled rada][pregled]{Pregled rada}
 
-\chapter[Naslov poglavlja u sadržaju][Kratki naslov poglavlja]{Naslov poglavlja}	
+\chapter[Modeliranje problema grupiranja][modeliranje]{Modeliranje problema grupiranja}	
 % ukoliko naslov nije jako dugacak dovoljno je samo \chapter{Naslov poglavlja} 
 
-\section[Naslov sekcije u sadržaju][Kratki naslov sekcije]{Naslov sekcije}
-\subsection{Naslov podsekcije}
+\section[Osnovni pojmovi][os-pojmovi]{Osnovni pojmovi}
+
 \begin{thm}
 Iskaz teorema u kojem se javljaju skupovi  $\N$, $\Z$, $\Q$, $\R$ i $\C$.
 \end{thm}
@@ -87,84 +88,10 @@ Iskaz posljedice u kojoj se javljaju skupovi $\Ker T$ i $\slika T$..
 \begin{proof}
 Dokaz posljedice se nalazi u \cite{kljuc}. Pogledajte i \cite{kurepa1956convex}, \cite{kurepa1981funkcionalna} te \cite{Dutkay:2009}.
 \end{proof}
-jsfdsqF
-SG
-SFG
-FSG
-DF
-GS
-FG
-SFG
-SFG
-
-SFG
-
-SG
-SDFG
-SF
-GS
-
-DG
- SD
-S
-
-
-SD
- 
-
-DFGSDFG
-
-
-SDGSDF
-
-
-SDGSDGF
-
-
-SDGFSFDG
-
-
-SDGSDG  sdfsfg f fdh fgj gh jgjk jkj k yk k klk l fs fd gsdfg dfh dfghj fj ghjk gjk jlk sdf 
-$x_1+x_2+x_3+x_4=12$ $x_1+x_2+x_3+x_4=12$
- $x_1+x_2+x_3+x_4=12$ $x_1+x_2+x_3+x_4=12$ $x_1+x_2+x_3+x_4=12$ $x_1+x_2+x_3+x_4=12$
- $x_1+x_2+x_3+x_4=12$ $x_1+x_2+x_3+x_4=12$ $x_1+x_2+x_3+x_4=12$
-$x_1+x_2+x_3+x_4=12$ 
-SDGSG sdfsfg f fdh fgj gh jgjk jkj k yk k klk l fs fd gsdfg dfh dfghj fj ghjk gjk jlk sdf sfdh j fj tuk ugad h j yrtu iru i
-\[ z \left( 1 \ +\ \sqrt{\omega_{i+1} + \zeta -\frac{x+1}{\Theta +1} y + 1}
-\ \right) =  1 \]
-
-GSDFGSDFG
-
-
-
 \begin{equation}
 \label{eq:jed1}
 	1+1=2
 \end{equation}
-
-SDG
-SDFGS
-
-SDFGSFG
-
-
-SFGSFG
-
-
-SDFGSFG
-
-
-SDGSFG
-
-\label{stranica}
-Na stranici \pageref{stranica} se nalaza slika u \textbf{png} formatu.
-% slike smiju biti u svim formatima koje podrzava pdf (pdf, jpg, png)
-\begin{figure}[h!t]
-\begin{center}
-\includegraphics[scale=0.5]{mosaic-from-pompeii.png}
-\caption{Prva slika}
-\end{center}
-\end{figure}
 
 Na slici \ref{fig:3d} se nalazi 3D graf neke funkcije. 
 
@@ -177,6 +104,35 @@ Na slici \ref{fig:3d} se nalazi 3D graf neke funkcije.
 kao i jedna vrlo komplicirana formula koja slijedi iz \eqref{eq:jed1}
 \[ \sum_{i=1}^{\infty}A_{x_1}\times A_{{\alpha}_2}\oslash\iint_{\Omega}x^2\ddagger\limsup_{n\in\N}\frac{\alpha+\theta+\gamma}{n^{\omega}}\;\;\text{je u stvari}\;\;\biguplus_{r\in\Q}\overline{\Xi_i \mathop\Theta_{\substack{j\in\C \\ j\ni i\Q}} \Upsilon^{k^j} \underset{\ast}{\Psi} \hslash\vert_{\{\alpha\}}}.\]
 
+\section[Metode razvoja algoritama za grupiranje][metode-razvoja]{Metode razvoja algoritama za grupiranje}
+\section[Matematičko modeliranje problema][MMP]{Matematičko modeliranje problema}
+\section[Upravljanje podacima][upravljanje-podacima]{Upravljanje podacima}
+
+\chapter{Meta-heuristički pristup problemu}
+\section[Prirodom inspirirani algoritmi][prirodni-algoritmi]{Prirodom inspirirani algoritmi}
+\section{Reprezentacija podataka}
+\section{Analiza rezultata}
+\chapter{Poznati algoritmi i analiza}
+\section{Alg 1}
+\section{Alg 2}
+\section{Alg 3}
+\chapter{Grupiranje kroz paralelne procese}
+\section[Osnovni pojmovi MPI tehnologije][mpi]{Osnovni pojmovi MPI tehnologije}
+\section[Topologija][topologija]{Topologije}
+\section[Prednosti paralelizacije i cijena komunikacije][pred-man-paralel]{Prednosti paralelizacije i cijena komunikacije}
+\chapter{Konstrukcija paralelnih heurističkih algoritama za grupiranje}
+\section{Algoritam 1}
+\subsection{Opis}
+\subsection{Analiza}
+\section{Algoritam 2}
+\subsection{Opis}
+\subsection{Analiza}
+\section{Algoritam 3}
+\subsection{Opis}
+\subsection{Analiza}
+\chapter{Ostale moderne metode}
+\section{Programiranje na grafičkim karticama}
+\section{MapReduce metoda}
 % Na kraju diplomkog rada stavlja se  bibliografija
 % Najprije definiramo nacin prikazivanja bibliografije, u ovom slucaju verzija amsplain stila
 \bibliographystyle{babamspl} % babamspl ili babplain

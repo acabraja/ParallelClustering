@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: diplomski.aux
+The style file: babamspl.bst
+Database file #1: diplomski.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty language in kljuc
+Warning--empty language in Dutkay:2009
+Warning--missing journal name in Dutkay:2009
+Warning--missing pages in Dutkay:2009
+Warning--empty language in kurepa1956convex
+Warning--empty language in kurepa1981funkcionalna
+You've used 4 entries,
+            2664 wiz_defined-function locations,
+            616 strings with 5974 characters,
+and the built_in function-call counts, 1417 in all, are:
+= -- 84
+> -- 41
+< -- 0
++ -- 17
+- -- 13
+* -- 228
+:= -- 213
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 19
+chr.to.int$ -- 0
+cite$ -- 10
+duplicate$ -- 73
+empty$ -- 139
+format.name$ -- 35
+if$ -- 252
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 10
+newline$ -- 36
+num.names$ -- 7
+pop$ -- 36
+preamble$ -- 1
+purify$ -- 15
+quote$ -- 0
+skip$ -- 32
+stack$ -- 0
+substring$ -- 39
+swap$ -- 25
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 12
+warning$ -- 6
+while$ -- 9
+width$ -- 5
+write$ -- 48
+(There were 6 warnings)
