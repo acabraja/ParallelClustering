@@ -75,37 +75,47 @@
 % ukoliko naslov nije jako dugacak dovoljno je samo \chapter{Naslov poglavlja} 
 
 \section[Osnovni pojmovi][os-pojmovi]{Osnovni pojmovi}
+Kako bi kasnije bilo jednostavnije objašnjavati strukture i same implementacije algoritama potrebno je problem grupiranja reprezentirati osnovnim pojmovima. U nastavku ćemo formalno definirati sve komponente od kojih se problem grupiranja sastoji.
+\begin{defn}
+\label{def:uzorak}
+\textbf{Uzorak} je apstraktna struktura podataka koja reprezentira stvarne podatke s kojima raspolaže algoritam za klasteriranje.
+\end{defn}
+\begin{defn}
+\label{def:svojstvo}
+\textbf{Svojstvo} je vrijednost ili struktura koja predstavlja jednu značajku danog podatka unutar uzorka.
+\end{defn}
+\begin{defn}
+\label{def:udaljenost}
+\textbf{Udaljenost} između uzoraka definiramo kao funkciju 
+$f: D  -> \R$, gdje je $D$ skup svojstava danih uzoraka
+\end{defn}
+\begin{defn}
+\label{def:blizina}
+Za uzorke kažemo da su \textbf{blizu} jedan drugome ako je njihova udaljenost manja od unaprijed zadane veličine
+\end{defn}
+\begin{defn}
+\label{def:klaster}
+\textbf{Klaster} je skup uzoraka koji su u prostoru podataka blizu. Ako su uzorci identični onda je njihova udaljenost uvijek $0$
+\end{defn}
+\begin{defn}
+\label{def:hard}
+\textbf{Jednistveno grupiranje} je postupak grupiranja kada svaki uzorak pripada jednom i samo jednom klasteru.
+\end{defn}
+\begin{defn}
+\label{def:fuzzy}
+\textbf{Nejasno ili nejedinstveno grupiranje} je postupak grupiranja gdje jedan uzorak može biti u više klastera.
+\end{defn}
 
-\begin{thm}
-Iskaz teorema u kojem se javljaju skupovi  $\N$, $\Z$, $\Q$, $\R$ i $\C$.
-\end{thm}
-\begin{conj}
-Iskaz slutnje u kojoj se javljaju funkcije $\tg$, $\tgh$ i $\sh$.
-\end{conj}
-\begin{cor}
-Iskaz posljedice u kojoj se javljaju skupovi $\Ker T$ i $\slika T$..
-\end{cor}
-\begin{proof}
-Dokaz posljedice se nalazi u \cite{kljuc}. Pogledajte i \cite{kurepa1956convex}, \cite{kurepa1981funkcionalna} te \cite{Dutkay:2009}.
-\end{proof}
-\begin{equation}
-\label{eq:jed1}
-	1+1=2
-\end{equation}
 
-Na slici \ref{fig:3d} se nalazi 3D graf neke funkcije. 
-
-\begin{figure}[h!t]
-\centering \includegraphics{surface3d.png}
-\caption{Druga slika}
-\label{fig:3d}
-\end{figure}
-
-kao i jedna vrlo komplicirana formula koja slijedi iz \eqref{eq:jed1}
-\[ \sum_{i=1}^{\infty}A_{x_1}\times A_{{\alpha}_2}\oslash\iint_{\Omega}x^2\ddagger\limsup_{n\in\N}\frac{\alpha+\theta+\gamma}{n^{\omega}}\;\;\text{je u stvari}\;\;\biguplus_{r\in\Q}\overline{\Xi_i \mathop\Theta_{\substack{j\in\C \\ j\ni i\Q}} \Upsilon^{k^j} \underset{\ast}{\Psi} \hslash\vert_{\{\alpha\}}}.\]
-
-\section[Metode razvoja algoritama za grupiranje][metode-razvoja]{Metode razvoja algoritama za grupiranje}
 \section[Matematičko modeliranje problema][MMP]{Matematičko modeliranje problema}
+Definicija grupiranja podataka nije jedinstvena. U literaturama se na različite načine pokušava opisati ovaj postupak. Neki od pokušaja opisne definicije su:
+
+\begin{enumerate}
+\item \textit{Grupiranje podataka je postupak otkrivanja homogenih\footnote{podaci koji se ne mogu smisleno separirati} grupa uzoraka unutar skupa svih danih uzoraka.}
+
+\item \textit{Grupiranje podataka je postupak određivanja koji su uzorci slični te ih svrstati u isti klaster.}
+\end{enumerate}
+\section[Metode razvoja algoritama za grupiranje][metode-razvoja]{Metode razvoja algoritama za grupiranje}
 \section[Upravljanje podacima][upravljanje-podacima]{Upravljanje podacima}
 
 \chapter{Meta-heuristički pristup problemu}
@@ -116,7 +126,7 @@ kao i jedna vrlo komplicirana formula koja slijedi iz \eqref{eq:jed1}
 \section{Alg 1}
 \section{Alg 2}
 \section{Alg 3}
-\chapter{Grupiranje kroz paralelne procese}
+\chapter{Tehnike za paralelizaciju algoritama}
 \section[Osnovni pojmovi MPI tehnologije][mpi]{Osnovni pojmovi MPI tehnologije}
 \section[Topologija][topologija]{Topologije}
 \section[Prednosti paralelizacije i cijena komunikacije][pred-man-paralel]{Prednosti paralelizacije i cijena komunikacije}
@@ -156,7 +166,16 @@ In this ...
 % te zivotopis
 
 \begin{cv}
-Dana ...
+Na slici \ref{def:fuzzy} se nalazi 3D graf neke funkcije. 
+
+\begin{figure}[h!t]
+\centering \includegraphics{surface3d.png}
+\caption{Druga slika}
+\label{fig:3d}
+\end{figure}
+
+kao i jedna vrlo komplicirana formula koja slijedi iz \eqref{eq:jed1}
+\[ \sum_{i=1}^{\infty}A_{x_1}\times A_{{\alpha}_2}\oslash\iint_{\Omega}x^2\ddagger\limsup_{n\in\N}\frac{\alpha+\theta+\gamma}{n^{\omega}}\;\;\text{je u stvari}\;\;\biguplus_{r\in\Q}\overline{\Xi_i \mathop\Theta_{\substack{j\in\C \\ j\ni i\Q}} \Upsilon^{k^j} \underset{\ast}{\Psi} \hslash\vert_{\{\alpha\}}}.\]
 \end{cv}
 
 \end{document}

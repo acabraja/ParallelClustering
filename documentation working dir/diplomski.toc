@@ -5,9 +5,9 @@
 \contentsline {section}{\numberline {0.3}Pregled rada}{1}{section.0.3}
 \contentsline {chapter}{\chapternumberline {1}Modeliranje problema grupiranja}{3}{chapter.1}
 \contentsline {section}{\numberline {1.1}Osnovni pojmovi}{3}{section.1.1}
-\contentsline {section}{\numberline {1.2}Metode razvoja algoritama za grupiranje}{3}{section.1.2}
-\contentsline {section}{\numberline {1.3}Matemati\IeC {\v c}ko modeliranje problema}{3}{section.1.3}
-\contentsline {section}{\numberline {1.4}Upravljanje podacima}{3}{section.1.4}
+\contentsline {section}{\numberline {1.2}Matemati\IeC {\v c}ko modeliranje problema}{4}{section.1.2}
+\contentsline {section}{\numberline {1.3}Metode razvoja algoritama za grupiranje}{4}{section.1.3}
+\contentsline {section}{\numberline {1.4}Upravljanje podacima}{4}{section.1.4}
 \contentsline {chapter}{\chapternumberline {2}Meta-heuristi\IeC {\v c}ki pristup problemu}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Prirodom inspirirani algoritmi}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}Reprezentacija podataka}{5}{section.2.2}
@@ -16,7 +16,7 @@
 \contentsline {section}{\numberline {3.1}Alg 1}{7}{section.3.1}
 \contentsline {section}{\numberline {3.2}Alg 2}{7}{section.3.2}
 \contentsline {section}{\numberline {3.3}Alg 3}{7}{section.3.3}
-\contentsline {chapter}{\chapternumberline {4}Grupiranje kroz paralelne procese}{9}{chapter.4}
+\contentsline {chapter}{\chapternumberline {4}Tehnike za paralelizaciju algoritama}{9}{chapter.4}
 \contentsline {section}{\numberline {4.1}Osnovni pojmovi MPI tehnologije}{9}{section.4.1}
 \contentsline {section}{\numberline {4.2}Topologija}{9}{section.4.2}
 \contentsline {section}{\numberline {4.3}Prednosti paralelizacije i cijena komunikacije}{9}{section.4.3}
