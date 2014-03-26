@@ -71,14 +71,15 @@
 \section[Primjena][primjena]{Primjena}
 \section[Pregled rada][pregled]{Pregled rada}
 
-\chapter[Modeliranje problema grupiranja][modeliranje]{Modeliranje problema grupiranja}	
+\chapter[Modeliranje problema grupiranja][MODELIRANJE]{Modeliranje problema grupiranja}	
 % ukoliko naslov nije jako dugacak dovoljno je samo \chapter{Naslov poglavlja} 
 
 \section[Osnovni pojmovi][os-pojmovi]{Osnovni pojmovi}
-Kako bi kasnije bilo jednostavnije objašnjavati strukture i same implementacije algoritama potrebno je problem grupiranja reprezentirati osnovnim pojmovima. U nastavku ćemo formalno definirati sve komponente od kojih se problem grupiranja sastoji.
+\label{sec:os-pojmovi}
+Kako bi u daljnjem razmatranju bilo jednostavnije objašnjavati strukture i same implementacije algoritama potrebno je problem grupiranja reprezentirati osnovnim pojmovima. U nastavku ćemo formalno definirati sve komponente od kojih se problem grupiranja sastoji.
 \begin{defn}
 \label{def:uzorak}
-\textbf{Uzorak} je apstraktna struktura podataka koja reprezentira stvarne podatke s kojima raspolaže algoritam za klasteriranje.
+\textbf{Uzorak} je apstraktna struktura podataka koja reprezentira stvarne podatke s kojima raspolaže algoritam za grupiranje.
 \end{defn}
 \begin{defn}
 \label{def:svojstvo}
@@ -105,20 +106,56 @@ Za uzorke kažemo da su \textbf{blizu} jedan drugome ako je njihova udaljenost m
 \label{def:fuzzy}
 \textbf{Nejasno ili nejedinstveno grupiranje} je postupak grupiranja gdje jedan uzorak može biti u više klastera.
 \end{defn}
-
+\begin{rem}
+U radu ćemo promatrati \textbf{jedinstveno grupiranje} tako da će sve daljnje definicje i modeliranja predpostavljati da želimo dobiti disjunktne klastere. Jedinstveno grupiranje (eng: hard clustering) je ujedno i teži problem.
+\end{rem}
 
 \section[Matematičko modeliranje problema][MMP]{Matematičko modeliranje problema}
-Definicija grupiranja podataka nije jedinstvena. U literaturama se na različite načine pokušava opisati ovaj postupak. Neki od pokušaja opisne definicije su:
+Definicija grupiranja podataka nije jedinstvena. U literati se na različite načine pokušava opisati ovaj postupak. Neki od pokušaja opisne definicije su:
 
 \begin{enumerate}
 \item \textit{Grupiranje podataka je postupak otkrivanja homogenih\footnote{podaci koji se ne mogu smisleno separirati} grupa uzoraka unutar skupa svih danih uzoraka.}
 
 \item \textit{Grupiranje podataka je postupak određivanja koji su uzorci slični te ih svrstati u isti klaster.}
 \end{enumerate}
-\section[Metode razvoja algoritama za grupiranje][metode-razvoja]{Metode razvoja algoritama za grupiranje}
+Za modelirali problem neće nam biti dovoljne opisne definicije. U ovom slučaju opisne definicje mogu poslužiti samo kao intuicija o ćemu se zapravo radi kada govorimo o grupiranju. U nastavku ćemo pomoću definiranih pojmova u poglavlju \ref{sec:os-pojmovi} matematički opisati problem grupiranja podataka.
+
+Neka je $\mathbf{U} = \{U_1,U_2,\cdots,U_n\} $ skup od $n$ uzoraka,te neka je $U_i = (s_1,s_2,\cdots,s_d)$ reprezentiran $d$-dimenzionalnim vektorom gdje $s_i$ predstavlja jedno svojstvo. Ovako definiran $\mathbf{U}$ moguće je reprezentirati kao matricu $\mathbf{S}_{d\times n}$.Svaki stupac te matrice predstavlja jedan uzorak iz danog skupa $\mathbf{U}$.
+\begin{equation}
+\label{equ:matrica-uzoraka}
+\mathbf{S}_{d \times n} = 
+\begin{pmatrix}
+s_{1,1} & s_{1,2} & \cdots & \cdots & s_{1,n}\\
+s_{2,1} & s_{2,2} & \cdots & \cdots & s_{2,n}\\
+\vdots & \vdots & \ddots & \ddots & \vdots\\
+s_{d,1} & s_{d,2} & \cdots & \cdots & s_{d,n}
+\end{pmatrix}
+\end{equation}
+Iz definicje \ref{def:hard} te iz navedenog formalnog zapisa dajemo formalnu definiciju problema grupiranja.
+\begin{defn}
+\label{def:k-klaster}
+\textbf{Skup od k klastera} $\mathbf{C} = \{C_1,C_2,...,C_k\}$ je skup sa sljedećim svojstvima:
+\begin{itemize}
+\item $C_i \neq \Phi$
+\item $C_i \cap C_j = \Phi$ , $\forall i,j$ $ i \neq j$
+\item $\cup_{i=1}^{k}C_i = \mathbf{U} $
+\end{itemize} 
+\end{defn}
+\begin{rem}
+\label{nap:ZC}
+U terminima matrice $\mathbf{Z}$ to znači da se svaki $C_i$ zapravo sastoji od stupaca matrice $\mathbf{Z}$.
+\end{rem}
+\begin{defn}
+\label{def:hard-formal}
+\textbf{Problem grupiranja} u skup od k klastera $\mathbf{C}$ je ekvivalentan problemu da\\
+$\forall c, c' \in C_i$ udaljenost od $c$ do $c'$ je manja od udaljenosti $c$ do bilo kojeg drugog $c'' \in C_j$ $ j \neq i$ 
+\end{defn}
+Zapravo problem grupiranja je pronalazak najpogodnije particije za $\mathbf{C}$ u skupu svih mogućih particija.
+Prema napomeni \ref{nap:ZC} to znači da se zapravo radi o problemu raspodjele n stupaca matrice $\mathbf{Z}$ u $k$ skupova 
+\section[Metode razvoja algoritama za grupiranje][metode razvoja]{Metode razvoja algoritama za grupiranje}
 \section[Upravljanje podacima][upravljanje-podacima]{Upravljanje podacima}
 
-\chapter{Meta-heuristički pristup problemu}
+\chapter[Metaheuristike]{Meta-heuristički pristup problemu}
 \section[Prirodom inspirirani algoritmi][prirodni-algoritmi]{Prirodom inspirirani algoritmi}
 \section{Reprezentacija podataka}
 \section{Analiza rezultata}
