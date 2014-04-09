@@ -19,10 +19,10 @@
 \BOOKMARK [1][-]{section.4.1}{Osnovni pojmovi MPI tehnologije}{chapter.4}% 19
 \BOOKMARK [1][-]{section.4.2}{Topologija}{chapter.4}% 20
 \BOOKMARK [1][-]{section.4.3}{Prednosti paralelizacije i cijena komunikacije}{chapter.4}% 21
-\BOOKMARK [0][-]{chapter.5}{Konstrukcija paralelnih heuristickih algoritama za grupiranje}{}% 22
-\BOOKMARK [1][-]{section.5.1}{Algoritam 1}{chapter.5}% 23
-\BOOKMARK [1][-]{section.5.2}{Algoritam 2}{chapter.5}% 24
-\BOOKMARK [1][-]{section.5.3}{Algoritam 3}{chapter.5}% 25
+\BOOKMARK [0][-]{chapter.5}{Konstrukcija paralelnih algoritama za grupiranje}{}% 22
+\BOOKMARK [1][-]{section.5.1}{Algoritam 1 heurisika}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Algoritam 2 iterativno}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.3}{Algoritam 3 hibrid}{chapter.5}% 25
 \BOOKMARK [0][-]{chapter.6}{Ostale moderne metode}{}% 26
 \BOOKMARK [1][-]{section.6.1}{Programiranje na grafickim karticama}{chapter.6}% 27
 \BOOKMARK [1][-]{section.6.2}{MapReduce metoda}{chapter.6}% 28

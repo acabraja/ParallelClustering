@@ -20,14 +20,14 @@
 \contentsline {section}{\numberline {4.1}Osnovni pojmovi MPI tehnologije}{11}{section.4.1}
 \contentsline {section}{\numberline {4.2}Topologija}{11}{section.4.2}
 \contentsline {section}{\numberline {4.3}Prednosti paralelizacije i cijena komunikacije}{11}{section.4.3}
-\contentsline {chapter}{\chapternumberline {5}Konstrukcija paralelnih heuristi\IeC {\v c}kih algoritama za grupiranje}{13}{chapter.5}
-\contentsline {section}{\numberline {5.1}Algoritam 1}{13}{section.5.1}
+\contentsline {chapter}{\chapternumberline {5}Konstrukcija paralelnih algoritama za grupiranje}{13}{chapter.5}
+\contentsline {section}{\numberline {5.1}Algoritam 1 heurisika}{13}{section.5.1}
 \contentsline {subsection}{Opis}{13}{section*.3}
 \contentsline {subsection}{Analiza}{13}{section*.4}
-\contentsline {section}{\numberline {5.2}Algoritam 2}{13}{section.5.2}
+\contentsline {section}{\numberline {5.2}Algoritam 2 iterativno}{13}{section.5.2}
 \contentsline {subsection}{Opis}{13}{section*.5}
 \contentsline {subsection}{Analiza}{13}{section*.6}
-\contentsline {section}{\numberline {5.3}Algoritam 3}{13}{section.5.3}
+\contentsline {section}{\numberline {5.3}Algoritam 3 hibrid}{13}{section.5.3}
 \contentsline {subsection}{Opis}{13}{section*.7}
 \contentsline {subsection}{Analiza}{13}{section*.8}
 \contentsline {chapter}{\chapternumberline {6}Ostale moderne metode}{15}{chapter.6}
