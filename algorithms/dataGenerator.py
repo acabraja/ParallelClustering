@@ -19,7 +19,7 @@ class DataGenerator:
     
     def SetOutputFileName(self,name):
         self.name = name
-    
+    1
     def SetDataType(self,dataType):
         self.typ = dataType
     

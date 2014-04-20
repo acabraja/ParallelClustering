@@ -46,7 +46,6 @@ class Genome:
             befor = i
             k+=1
             
-
 class Population:
     def __init__(self):
         self.population = []
