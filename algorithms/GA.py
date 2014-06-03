@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 27 13:42:09 2014
 
-@author:    Anto Čabraja
-"""
 #import fitness
 import random
 class Genome:
