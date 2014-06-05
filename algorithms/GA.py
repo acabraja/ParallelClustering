@@ -33,7 +33,7 @@ class Genome:
             print "Error numerClusters ([a] or [a,b])"
             numberClusters = list(input("numberClusters: "))
 
-        randList =sorted( random.sample(range(dataNum-1),numClusters-1))
+        randList = sorted( random.sample(range(dataNum-1),numClusters-1))
         randList.append(dataNum)
         befor = 0
         k = 0

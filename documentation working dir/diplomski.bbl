@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{}
   \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
   \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
   % \MRhref is called by the amsart/book/proc definition of \MR.
@@ -19,27 +19,5 @@
   \providebibliographyfont{numeral}{}%
   \providecommand\btxprintamslanguage[1]{\ (#1)}
   \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
-
-\expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
-\bibitem {kljuc}
-\btxnamefont {I.~\btxlastnamefont {Autor}}, \btxtitlefont {\btxifchangecase
-  {Naslov knjige}{Naslov Knjige}}, \btxpublisherfont {Samizdat}, 2052.
-
-\bibitem {Dutkay:2009}
-\btxnamefont {D.\btxfnamespacelong E. \btxlastnamefont {Dutkay}}, \btxnamefont
-  {D.~\btxlastnamefont {Han}}, \btxnamefont {Q.~\btxlastnamefont
-  {Sun}}\btxandcomma {} \btxandlong {} \btxnamefont {E.~\btxlastnamefont
-  {Weber}}, \btxjtitlefont {\btxifchangecase {Hearing the hausdorff
-  dimension}{Hearing the Hausdorff dimension}},  (2009), {\latintext
-  \btxurlfont{http://arxiv.org/abs/0910.5433}}.
-
-\bibitem {kurepa1956convex}
-\btxnamefont {S.~\btxlastnamefont {Kurepa}}, \btxjtitlefont {\btxifchangecase
-  {Convex functions}{Convex functions}}, \btxjournalfont {Glasnik Mat.-Fiz.
-  Astr. Ser. II} \btxvolumefont {11} (1956), \btxnumbershort {.}~2, 89--93.
-
-\bibitem {kurepa1981funkcionalna}
-\bysame, \btxtitlefont {\btxifchangecase {Funkcionalna analiza}{Funkcionalna
-  analiza}}, \btxpublisherfont {{\v{S}}kolska Knjiga}, 1981.
 
 \end{thebibliography}

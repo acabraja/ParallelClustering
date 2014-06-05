@@ -6,8 +6,10 @@
 \contentsline {chapter}{\chapternumberline {1}Modeliranje problema grupiranja}{3}{chapter.1}
 \contentsline {section}{\numberline {1.1}Osnovni pojmovi}{3}{section.1.1}
 \contentsline {section}{\numberline {1.2}Matemati\IeC {\v c}ko modeliranje problema}{4}{section.1.2}
-\contentsline {section}{\numberline {1.3}Metode razvoja algoritama za grupiranje}{5}{section.1.3}
-\contentsline {section}{\numberline {1.4}Upravljanje podacima}{5}{section.1.4}
+\contentsline {subsubsection}{Uzorak s numeri\IeC {\v c}kim svojstvima}{6}{section*.3}
+\contentsline {section}{\numberline {1.3}Metode razvoja algoritama za grupiranje}{6}{section.1.3}
+\contentsline {subsubsection}{A}{6}{section*.4}
+\contentsline {section}{\numberline {1.4}Upravljanje podacima}{6}{section.1.4}
 \contentsline {chapter}{\chapternumberline {2}Metaheuristike}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Prirodom inspirirani algoritmi}{7}{section.2.1}
 \contentsline {section}{\numberline {2.2}Reprezentacija podataka}{7}{section.2.2}
@@ -22,19 +24,17 @@
 \contentsline {section}{\numberline {4.3}Prednosti paralelizacije i cijena komunikacije}{11}{section.4.3}
 \contentsline {chapter}{\chapternumberline {5}Konstrukcija paralelnih algoritama za grupiranje}{13}{chapter.5}
 \contentsline {section}{\numberline {5.1}Algoritam 1 heurisika}{13}{section.5.1}
-\contentsline {subsection}{Opis}{13}{section*.3}
-\contentsline {subsection}{Analiza}{13}{section*.4}
-\contentsline {section}{\numberline {5.2}Algoritam 2 iterativno}{13}{section.5.2}
 \contentsline {subsection}{Opis}{13}{section*.5}
 \contentsline {subsection}{Analiza}{13}{section*.6}
-\contentsline {section}{\numberline {5.3}Algoritam 3 hibrid}{13}{section.5.3}
+\contentsline {section}{\numberline {5.2}Algoritam 2 iterativno}{13}{section.5.2}
 \contentsline {subsection}{Opis}{13}{section*.7}
 \contentsline {subsection}{Analiza}{13}{section*.8}
+\contentsline {section}{\numberline {5.3}Algoritam 3 hibrid}{13}{section.5.3}
+\contentsline {subsection}{Opis}{13}{section*.9}
+\contentsline {subsection}{Analiza}{13}{section*.10}
 \contentsline {chapter}{\chapternumberline {6}Ostale moderne metode}{15}{chapter.6}
 \contentsline {section}{\numberline {6.1}Programiranje na grafi\IeC {\v c}kim karticama}{15}{section.6.1}
 \contentsline {section}{\numberline {6.2}MapReduce metoda}{15}{section.6.2}
-\contentsline {chapter}{Bibliografija}{17}{chapter*.9}
-\select@language {croatian}
-\select@language {croatian}
+\contentsline {chapter}{Bibliografija}{17}{chapter*.11}
 \select@language {croatian}
 \select@language {croatian}

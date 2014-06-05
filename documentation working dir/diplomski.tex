@@ -107,10 +107,10 @@ Za uzorke kažemo da su \textbf{blizu} jedan drugome ako je njihova udaljenost m
 \textbf{Nejasno ili nejedinstveno grupiranje} je postupak grupiranja gdje jedan uzorak može biti u više klastera.
 \end{defn}
 \begin{rem}
-U radu ćemo promatrati \textbf{jedinstveno grupiranje} tako da će sve daljnje definicje i modeliranja predpostavljati da želimo dobiti disjunktne klastere. Jedinstveno grupiranje (eng: hard clustering) je ujedno i teži problem.
+U radu ćemo promatrati \textbf{jedinstveno grupiranje} tako da će sve daljnje definicje i modeliranja predpostavljati da želimo dobiti disjunktne klastere.
 \end{rem}
 
-\section[Matematičko modeliranje problema][MMP]{Matematičko modeliranje problema}
+\section[Matematičko modeliranje problema][Matematičko modeliranje]{Matematičko modeliranje problema}
 Definicija grupiranja podataka nije jedinstvena. U literati se na različite načine pokušava opisati ovaj postupak. Neki od pokušaja opisne definicije su:
 
 \begin{enumerate}
@@ -136,14 +136,14 @@ Iz definicje \ref{def:hard} te iz navedenog formalnog zapisa dajemo formalnu def
 \label{def:k-klaster}
 \textbf{Skup od k klastera} $\mathbf{C} = \{C_1,C_2,...,C_k\}$ je skup sa sljedećim svojstvima:
 \begin{itemize}
-\item $C_i \neq \Phi$
-\item $C_i \cap C_j = \Phi$ , $\forall i,j$ $ i \neq j$
+\item $C_i \neq \emptyset$
+\item $C_i \cap C_j = \emptyset$ , $\forall i,j$ $ i \neq j$
 \item $\cup_{i=1}^{k}C_i = \mathbf{U} $
 \end{itemize} 
 \end{defn}
 \begin{rem}
 \label{nap:ZC}
-U terminima matrice $\mathbf{Z}$ to znači da se svaki $C_i$ zapravo sastoji od stupaca matrice $\mathbf{Z}$.
+U terminima matrice $\mathbf{S}$ to znači da se svaki $C_i$ zapravo sastoji od stupaca matrice $\mathbf{S}$.
 \end{rem}
 \begin{defn}
 \label{def:hard-formal}
@@ -151,10 +151,42 @@ U terminima matrice $\mathbf{Z}$ to znači da se svaki $C_i$ zapravo sastoji od 
 $\forall c, c' \in C_i$ udaljenost od $c$ do $c'$ je manja od udaljenosti $c$ do bilo kojeg drugog $c'' \in C_j$ $ j \neq i$ 
 \end{defn}
 Zapravo problem grupiranja je pronalazak najpogodnije particije za $\mathbf{C}$ u skupu svih mogućih particija.
-Prema napomeni \ref{nap:ZC} to znači da se zapravo radi o problemu raspodjele n stupaca matrice $\mathbf{Z}$ u $k$ skupova 
+Prema napomeni \ref{nap:ZC} lako se zaključi da se problem grupiranja svodi na problem raspodjele n stupaca matrice $\mathbf{S}$ u $k$ skupova.
+Uvedena matematička notacija za problem grupiranja omogućuje da postavimo model za rješavanje, koji je u kasnijem razmatranju pogodan za modeliranje i implementaciju.\\
+Neka je  $\mathcal{C} = \{ \mathbf{C}^1, \mathbf{C}^2, ..., \mathbf{C}^{N(n,k)}  \}$ skup svih mogućih rješenja danog problema grupiranja, gdje je
+\begin{equation}
+N(n,k) = \frac{1}{k!}\sum_{i=1}^{k}(-1)^i{{k}\choose{i}}(k-i)^i
+\end{equation}
+broj mogućih rješenja za raspodjelu $n$ uzoraka u $k$ klastera. Rješenje problema svodi se na optimizacijski problem
+\begin{equation}
+\label{equ:opt}
+\underset{\mathbf{C} \in \mathcal{C}}{optimiziraj} \textbf{  }f(\mathbf{S}_{d\times n}, \mathbf{C})
+\end{equation}
+gdje je $f$ funkcija dobrote rješenjea $\mathbf{C}$, Funkcija dobrote je funkcija koja mjeri kvalitetu rješenja za dani problem. Ovisno o tome kako je zadana može se gledati problem maksimizacije ili minimizacije. Gotovo uvijek njome se određuju jedan od dva važna parametra:
+\begin{itemize}
+\item koliko su blizu uzorci u danom klasteru
+\item koliko su blizu dva disjunktna klastera
+\end{itemize}
+Ako promatramo udaljenosti uzoraka unutar klastera, onda nam se problem optimizacije \ref*{equ:opt} svodi na problem minimizacije funkcije $f$, jer želimo postići što manju udaljenost uzoraka unutar jednog klastera. Međutim ako želimo postići da su nam klasteri međusobno disjunktni i da granica disjunkcije bude čvrsto definirana moramo promatrati udaljenosti među klasterima. U ovom slučaju potrebno je maksimizirati problem to jest tražiti za koju particju će vrijednost funkcije $f$ biti najveća. \\
+Konačno, sada znamo uzorke reprezentirati kao $n$-dimenzionalne vektore, također znamo definirati klaster kao skup vektora, te smo postavili model za određivanje kvalitete određenog klastera. Preostali posao je pronaći konkretnu funkciju $f$ koja će na adekvatan način reprezentirati udaljenost između uzoraka.Vrlo je važno definirari od koji se komponenti uzorak sastoji. Osnovna podjela uzoraka je na \textit{numeričke} i \textit{kategoričke}. Numerički uzorak je onaj uzorak čije su sve vrijednosti numeričkog tipa, dok je kategorički onaj uzorak čije vrijednosti poprimaju vrijednosti nekih kategorija. Više o mogućnostima izgleda svojstava uzorka biti će rečeno u cijelini \ref{sec:upravljanje-pod}. U ovom trenutku za definiranje funkcije dobrote potrebno je samo imati u vidu da podaci ne moraju biti jednostavni, ali i dalje se od funkcije dobrote očekuje da na adekvatan način odredi udaljenost između dva uzorka.
+\subsubsection{Uzorak s numeričkim svojstvima}
+Ukoliko su nam uzorci takvi da ih možemo predstaviti kao vektor numeričkih podataka tada ih možemo smjestiti u vektoriski prostor, te na njima upotrijebiti neku od standardnih vektorskih normi. Za problem grupiranja podataka u praksi najčešće se koristi Euklidska ili neka od p-normi [liter]. 
+Euklidska norma daleko je najpopularnija i glavni je predstavnik normi koje mjere različitost među uzorcima. Drugim rječima za Euklidsku normu vrijedi da su uzorci više različiti što je vrijednost norme veća. \\
+Neka su $S_1$ i $S_2$ dva uzorka sa $n$ značajki, tada udaljenost $d$ između dva uzorka u eklidskoj normi računamo kao:
+\begin{equation}
+\label{equ:metrika-num}
+d(S_1,S_2) = \sqrt{\sum_{i=1}^{n}(s_{i,1} -s_{i,2})^2}
+\end{equation}
+gdje su $s_{i,1}$ i $s_{i,2}$ značajke u uzorcima $S_1$ i $S_2$. U kreiranju rješenja sa numeričkim podacima uvijek ćemo koristit Euklidsku normu s malim izmjenama ovisno o vrsti problema. Međutim u praksi se vrlo četo pojavljuje i noram koja koristi svojstva kovarijacijske matrice uzoraka[liter]. 
+\begin{equation}
+d(S_1,S_2) = (S_1-S_2)^T\Sigma^{-1}(S_1-S_2)
+\end{equation}
+$S_1$ i $S_2$ uzorci, $\Sigma $ kovarijacijska matrica uzoraka. I za ovo normu također vrijedi da su podaci više različiti što je vrijednost $d$ veća. Također postoji veza između Euklidske i norme s kovarijacijskom matricom što je detaljno objašnjeno u [liter]. Samo ćemo reći da ako je $\Sigma$ dijagonalna matrica onda se pripadna udaljenost zove normalizirana Euklidska udaljenost.\\
+Osim normi koje mjere različitost podataka, postoje i norme koje mjere sličnot. Norme koje mjere sličnost često su baziranje na određivanju kuta između dva uzorka u vektorskom prostoru. U [liter] objašnjene su neke od popularnijih normi ovog tipa.
 \section[Metode razvoja algoritama za grupiranje][metode razvoja]{Metode razvoja algoritama za grupiranje}
+\subsubsection{A}
 \section[Upravljanje podacima][upravljanje-podacima]{Upravljanje podacima}
-
+\label{sec:upravljanje-pod}
 \chapter[Metaheuristike]{Meta-heuristički pristup problemu}
 \section[Prirodom inspirirani algoritmi][prirodni-algoritmi]{Prirodom inspirirani algoritmi}
 \section{Reprezentacija podataka}
