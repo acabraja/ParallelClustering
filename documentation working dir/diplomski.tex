@@ -169,7 +169,7 @@ gdje je $f$ funkcija dobrote rješenjea $\mathbf{C}$, Funkcija dobrote je funkci
 \end{itemize}
 Ako promatramo udaljenosti uzoraka unutar klastera, onda nam se problem optimizacije \ref*{equ:opt} svodi na problem minimizacije funkcije $f$, jer želimo postići što manju udaljenost uzoraka unutar jednog klastera. Međutim ako želimo postići da su nam klasteri međusobno disjunktni i da granica disjunkcije bude čvrsto definirana moramo promatrati udaljenosti među klasterima. U ovom slučaju potrebno je maksimizirati problem to jest tražiti za koju particju će vrijednost funkcije $f$ biti najveća. \\
 Konačno, sada znamo uzorke reprezentirati kao $n$-dimenzionalne vektore, također znamo definirati klaster kao skup vektora, te smo postavili model za određivanje kvalitete određenog klastera. Preostali posao je pronaći konkretnu funkciju $f$ koja će na adekvatan način reprezentirati udaljenost između uzoraka.Vrlo je važno definirari od koji se komponenti uzorak sastoji. Osnovna podjela uzoraka je na \textit{numeričke} i \textit{kategoričke}. Numerički uzorak je onaj uzorak čije su sve vrijednosti numeričkog tipa, dok je kategorički onaj uzorak čije vrijednosti poprimaju vrijednosti nekih kategorija. Više o mogućnostima izgleda svojstava uzorka biti će rečeno u cijelini \ref{sec:upravljanje-pod}. U ovom trenutku za definiranje funkcije dobrote potrebno je samo imati u vidu da podaci ne moraju biti jednostavni, ali i dalje se od funkcije dobrote očekuje da na adekvatan način odredi udaljenost između dva uzorka.
-\subsubsection{Uzorak s numeričkim svojstvima}
+\subsubsection{Uzorak s numeričkim značajkama}
 Ukoliko su nam uzorci takvi da ih možemo predstaviti kao vektor numeričkih podataka tada ih možemo smjestiti u vektoriski prostor, te na njima upotrijebiti neku od standardnih vektorskih normi. Za problem grupiranja podataka u praksi najčešće se koristi Euklidska ili neka od p-normi [liter]. 
 Euklidska norma daleko je najpopularnija i glavni je predstavnik normi koje mjere različitost među uzorcima. Drugim rječima za Euklidsku normu vrijedi da su uzorci više različiti što je vrijednost norme veća. \\
 Neka su $S_1$ i $S_2$ dva uzorka sa $n$ značajki, tada udaljenost $d$ između dva uzorka u eklidskoj normi računamo kao:
@@ -182,9 +182,54 @@ gdje su $s_{i,1}$ i $s_{i,2}$ značajke u uzorcima $S_1$ i $S_2$. U kreiranju rj
 d(S_1,S_2) = (S_1-S_2)^T\Sigma^{-1}(S_1-S_2)
 \end{equation}
 $S_1$ i $S_2$ uzorci, $\Sigma $ kovarijacijska matrica uzoraka. I za ovo normu također vrijedi da su podaci više različiti što je vrijednost $d$ veća. Također postoji veza između Euklidske i norme s kovarijacijskom matricom što je detaljno objašnjeno u [liter]. Samo ćemo reći da ako je $\Sigma$ dijagonalna matrica onda se pripadna udaljenost zove normalizirana Euklidska udaljenost.\\
-Osim normi koje mjere različitost podataka, postoje i norme koje mjere sličnot. Norme koje mjere sličnost često su baziranje na određivanju kuta između dva uzorka u vektorskom prostoru. U [liter] objašnjene su neke od popularnijih normi ovog tipa.
+Osim normi koje mjere razlike među podacima, postoje i norme koje mjere sličnot. Norme koje mjere sličnost često su baziranje na određivanju kuta između dva uzorka u vektorskom prostoru. U [liter] objašnjene su neke od popularnijih normi ovog tipa.
+\subsubsection{Uzorak s kategoričkim značajkama}
+Individualna usporedba  dva uzorka s kategoričkim značajkama vrlo često nema važnost i jedina povratna informacija je koliko značajki u uzorcima ima jednaku vrijednost. Ako ipak želimo postići da usporedbom dvije kategorije možemo zaključiti koliko su značajke u uzorku slične, to jest blizu, moramo svakoj značajki pridružiti težine i definirati operaciju razlike. Ako bolje pogledamo tim postupkom zapravo smo kategorije pretvorili u numeričke vrijednosti sa posebno definiranom funkcijom razlike.
+Promotrimo sljdeći primjer.
+\begin{exa}
+Neka nam je na raspolaganju skup podataka o cvijeću, te neka nam je svaki cvijet zadan kao vektor s tri kategoričke komponente. Ounačimo sa $S$ i $S'$
+dva cvijeta iz skupa zadanih uzoraka.
+\begin{align*}
+ S &= (crven, amerika, iglicasto)\\
+ S'& = (plav, europa, iglicasto)
+\end{align*}
+Lako vidimo da jedini zaključak kojeg iz ovih podataka možemo dobiti jest da se na prve dvije komponente razlikuju, dok je na trećoj vrijednost kategorije ista. Ako bi naprimjer htjeli kategorijama pridružiti vrijednost morali bi definirati što znači da su amerika i europa različite i koliko nam je to bitno svojstvo. Važnost svojstva ima ključnu ulogu i vrlo je teško empirijski procijeniti kakve numeričke podatke dodjeliti kategorijama.
+\end{exa} 
+U praksi nismo uvijek u mogućnosti predvidjeti sve moguće kategoričke vrijednosti, pa samim time ne možemo svakoj kategoriji pridružiti numeričku vrijednost. Često korištena i popularna metoda za određivanje pripadnosti određenoj klasi, kada se radi o kategoričkim vrijednostima, je traženje udjela pojavljivanja određene kategoričke vrijednosti u promatranom klasteru.U tom slučaju ne promatramo udaljenost dva uzorka nego koliko u klasteru ima kategorički vrijednosti sličnih onima koje obilježavaju novi uzorak.
+Drugim rječima promatramo sličnost uzorka sa klasterom.
+Neka je $\mathbf{C} = \{C_1,C_2,...C_n\}$ skup od $n$ klastera. Neka je $c = (c_1,c_2,...,c_d)$ uzorak sa $d$ značajki istog tipa kao i uzorci iz zadanog skupa klastera. Definiramo funkciju sličnosti $s$ kao
+\begin{equation}
+\label{equ:omjer_znacajki}
+s(c,C_x) =  \sum_{i=1}^{d}\frac{ find(c_i,C_x)}{|C_x|}
+\end{equation} 
+gdje je $C_x \in \mathbf{C}$, funkcija $find$ vraća broj pojavljivanje značajke $c_i$ na $i$-tom mjestu u svakom uzorku iz skupu $C_x$, a $|C_x|$ označava broj uzoraka u skupu $C_x$. Važno je naglasiti da se promatra samo $i$-to mjesto u svim značajkama. Postoji mogućnost da se vrijednost značajke, to jest kategorija, na $i$-tom i $j$-tom mjestu u uzorku podudaraju. Na primjer ako imamo uzorak koji predstavlja automobile, te su dvije od značajki danog uzorka boja interijera i boja automobila. Očito dvije navedene značajke mogu poprimiti istu vrijednost, ali zapravo su potpuno disjunktne i kao takve ih treba promatrati. Konačno $c$ pridružimo onom klasteru za koji funkcija $s$ vrati najveću vrijednost.\\ Kada promatramo određeni skup podataka i kreiramo vektore uzoraka, u svakom trenutku znamo veličinu tog uzorka. Prilikom modeliranja problema sami određujemo skup značajki koji koristimo. Saznanje o broju značajki i njihovoj važnosti možemo upotrijebiti kako bi svakoj značajki odredili težinu. Naime, kako nisu sve značajke jednako bitne želimo postići da se utjecaj nekih značajki restringira, odnosno naglasi.
+S obzirom na navedeni zahtjev modificiramo funkciju $s$ iz \ref{equ:omjer_znacajki} te definiramo novu funkciju $s_w$.
+\begin{equation}
+\label{equ:omjer_znac_tezine}
+s_w(c,C_x) = \sum_{i=0}^{d}w_i\frac{find(c_i,C_x)}{|C_x|}
+\end{equation}
+Kao što vidimo svakoj značajki unutar uzorka pridružili smo težinu $w_i$. Važno svojstvo funkcije $s_w$ je da omogućuje potpuno isključivanje nekih od značajki. Navedeno svojstvo u praksi često služi za empirijsko otkivanje nebitnih značajki. Otkrivanje i uklanjanje značajki čije postojanje ne pridonosi poboljšanju rješenja uvelike smanjuje prostornu složenost što će detaljno biti obrađeno u \ref{sec:upravljanje-pod}.
+\subsubsection{Uzorak s hibridnim značajkama}
+Priroda problema za koje pokušavamo rješiti problem grupiranja često je složene strukture te je nemoguće podatke reprezentirati uzorcima za značajkama samo jednog tipa. U takvom slučaju podatak se reprezentira za uzorkom čije značajke mogu biti numeričkog i kategoričkog tipa. Ovako definirana reprezentacija podataka povećava složenost i modeliranje funkcije dobrote, odnosno odluka o tome koliko su dva uzorka slična.
+Označimo sa $S = (s_1,s_2,...,s_n)$ uzorak od $n$ značajki numeričkog i kategoričkog tipa. Bez smanjenja općenitosti možemo predpostaviti da su na prvih $l$ komponenti numeričke značajke, a na ostalih $n-l$ kategoričke. Funkciju udaljenosti $d_h$ između dva uzorka $S_1 $ i $S_2$ s hibridnim značajkama definiramo kao
+\begin{equation}
+d_h(S_1, S_2) = d(S_1(:l),S_2(:l)) + \frac{1}{s_w(S_1(l+1:),C_{S_2})}
+\end{equation}
+gdje je $d$ funkcija definirana u \ref{equ:metrika-num}, $s_w$ definirana u \ref{equ:omjer_znac_tezine}, a $C_{S_2}$ označava klaster u kojemu se nalazi $S_2$. Važno je napomenuti da $S_1$ ne mora nužno biti u klasteru dok $S_2$ mora. Dakle ako dodajemo novi uzorak i želimo mu pronaći klaster to ćemo učiniti tako da ga stavimo kao prvi argument funkcije $d_h$. Kao što vidimo vrijednost funkcije $s_w$ može biti jednaka nuli pa nam drugi sumand u definiciji funkcije $d_h$ nije definiran. U praksi se eksperimentalno odredi kolika je važnost da uzorak nema niti jednu katekoričku značajku istu kao značajke unutar promatranog klastera, te se funkcija $d_h$ dodefinira s obzirom na slučaj kada je $s_w = 0$. Neka je $\lambda$ eksperimentalno određena vrijednost tada se potpunda definicija funkcije $d_h$ može zapisati 
+\begin{equation}
+d_h(S_1,S_2) = \left\{ 
+  \begin{array}{l l}
+    d(S_1(:l),S_2(:l)) + \frac{1}{s_w(S_1(l+1:),C_{S_2})} & \quad s_w \neq 0\\
+    \\
+    d(S_1(:l),S_2(:l)) + \lambda & \quad s_w=0
+  \end{array} \right.
+\end{equation}
+Ovako definitrana funkcija $d_h$ je korektna. Naime, za sve parove uzoraka uvijek možemo odrediti vrijednost funkcije $d_h$ jer su sve komponente dane funkcije dobo definirane. Funkcija $d$ je zapravo standardna Euklidska norma pa je kao takva definirana za sve vektore. Funkcija $s_w$ je kompozicija funkcije $find$, funkcije zbrajanja, množenja i kardinalnog broja. Sve funkcije su dobro definirane[liter] pa je i kompozicija dobro definiran. Primjerimo da se ovako definirana funkcija $d_h$, sa pravilno postavljenim paremetrom $\lambda$ može koristit za sve slučajeve uzoraka: numeričke, kategoričke ili hibridne.
 \section[Metode razvoja algoritama za grupiranje][metode razvoja]{Metode razvoja algoritama za grupiranje}
-\subsubsection{A}
+U postupku modeliranja rješenja za problem grupiranja koristi se više metoda. Metoda za rješavanje ima puno i znastvenici intenzivno rade na pronalasku novih i objašnjenju kvalitete postojećih metoda. Danas je ovo područje izuzetno cjenjeno i svako novo saznanje može dovesti do revolucionarnog napretka u rješavanju izuzetno teških problema. Ipak, dvije metode su se pokazale kao općenitije i mogu poslužiti kao predložak za rješavanje većeg broja problema. Konkretno radi se o \textit{hijerarhijskom} i \textit{particijskom} pristupu rješavanju problema. Među ostalim metodama koje se danas ističu kao jako korisne pokazale su se : evolucijske metode, metode particioniranja grafa, metode bazirane na neuronskim mrežama, te metode s gradinjentnim spustom[liter]. U ovom radu obradit ćemo navedene najpoznatije metode, a od ostalih metoda obradit ćemo evolucijske. Također pokazat ćemo kako se komponente iz evolucijskih metoda mogu kombinirati sa particijskim pristupom, te će ta hibridna kombinacija biti glavna tema u nastavku ovog rada.
+
+\subsubsection{Hijerarijsko grupiranje}
+
 \section[Upravljanje podacima][upravljanje-podacima]{Upravljanje podacima}
 \label{sec:upravljanje-pod}
 \chapter[Metaheuristike]{Meta-heuristički pristup problemu}
