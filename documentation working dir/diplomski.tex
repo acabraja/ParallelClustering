@@ -14,7 +14,7 @@
 % opcija utf8 za unicode (unix, linux, mac)
 % opcija cp1250 za windowse
 \usepackage[utf8]{inputenc}  % ukoliko se koristi XeLaTeX onda je \usepackage{xunicode}\usepackage{xltxtra}
-
+\usepackage[]{algorithm2e}
 % Stil za diplomski, unutra je ukljucena podrska za hrvatski jezik
 \usepackage{diplomski}
 % bibliografija na hrvatskom
@@ -111,6 +111,7 @@ U radu ćemo promatrati \textbf{jedinstveno grupiranje} tako da će sve daljnje 
 \end{rem}
 
 \section[Matematičko modeliranje problema][Matematičko modeliranje]{Matematičko modeliranje problema}
+\label{sec:mat-mod}
 Definicija grupiranja podataka nije jedinstvena. U literati se na različite načine pokušava opisati ovaj postupak. Neki od pokušaja opisne definicije su:
 
 \begin{enumerate}
@@ -172,7 +173,7 @@ Konačno, sada znamo uzorke reprezentirati kao $n$-dimenzionalne vektore, takođ
 \subsubsection{Uzorak s numeričkim značajkama}
 Ukoliko su nam uzorci takvi da ih možemo predstaviti kao vektor numeričkih podataka tada ih možemo smjestiti u vektoriski prostor, te na njima upotrijebiti neku od standardnih vektorskih normi. Za problem grupiranja podataka u praksi najčešće se koristi Euklidska ili neka od p-normi [liter]. 
 Euklidska norma daleko je najpopularnija i glavni je predstavnik normi koje mjere različitost među uzorcima. Drugim rječima za Euklidsku normu vrijedi da su uzorci više različiti što je vrijednost norme veća. \\
-Neka su $S_1$ i $S_2$ dva uzorka sa $n$ značajki, tada udaljenost $d$ između dva uzorka u eklidskoj normi računamo kao:
+Neka su $S_1$ i $S_2$ dva uzorka sa $n$ značajki, tada udaljenost $d$ između dva uzorka u Eklidskoj normi računamo kao:
 \begin{equation}
 \label{equ:metrika-num}
 d(S_1,S_2) = \sqrt{\sum_{i=1}^{n}(s_{i,1} -s_{i,2})^2}
@@ -181,7 +182,7 @@ gdje su $s_{i,1}$ i $s_{i,2}$ značajke u uzorcima $S_1$ i $S_2$. U kreiranju rj
 \begin{equation}
 d(S_1,S_2) = (S_1-S_2)^T\Sigma^{-1}(S_1-S_2)
 \end{equation}
-$S_1$ i $S_2$ uzorci, $\Sigma $ kovarijacijska matrica uzoraka. I za ovo normu također vrijedi da su podaci više različiti što je vrijednost $d$ veća. Također postoji veza između Euklidske i norme s kovarijacijskom matricom što je detaljno objašnjeno u [liter]. Samo ćemo reći da ako je $\Sigma$ dijagonalna matrica onda se pripadna udaljenost zove normalizirana Euklidska udaljenost.\\
+$S_1$ i $S_2$ uzorci, $\Sigma $ kovarijacijska matrica uzoraka. Za ovo normu također vrijedi da su podaci više različiti što je vrijednost $d$ veća. Također postoji veza između Euklidske norme i norme s kovarijacijskom matricom što je detaljno objašnjeno u [liter]. Samo ćemo reći da ako je $\Sigma$ dijagonalna matrica onda se pripadna udaljenost zove normalizirana Euklidska udaljenost.\\
 Osim normi koje mjere razlike među podacima, postoje i norme koje mjere sličnot. Norme koje mjere sličnost često su baziranje na određivanju kuta između dva uzorka u vektorskom prostoru. U [liter] objašnjene su neke od popularnijih normi ovog tipa.
 \subsubsection{Uzorak s kategoričkim značajkama}
 Individualna usporedba  dva uzorka s kategoričkim značajkama vrlo često nema važnost i jedina povratna informacija je koliko značajki u uzorcima ima jednaku vrijednost. Ako ipak želimo postići da usporedbom dvije kategorije možemo zaključiti koliko su značajke u uzorku slične, to jest blizu, moramo svakoj značajki pridružiti težine i definirati operaciju razlike. Ako bolje pogledamo tim postupkom zapravo smo kategorije pretvorili u numeričke vrijednosti sa posebno definiranom funkcijom razlike.
@@ -226,16 +227,95 @@ d_h(S_1,S_2) = \left\{
 \end{equation}
 Ovako definitrana funkcija $d_h$ je korektna. Naime, za sve parove uzoraka uvijek možemo odrediti vrijednost funkcije $d_h$ jer su sve komponente dane funkcije dobo definirane. Funkcija $d$ je zapravo standardna Euklidska norma pa je kao takva definirana za sve vektore. Funkcija $s_w$ je kompozicija funkcije $find$, funkcije zbrajanja, množenja i kardinalnog broja. Sve funkcije su dobro definirane[liter] pa je i kompozicija dobro definiran. Primjerimo da se ovako definirana funkcija $d_h$, sa pravilno postavljenim paremetrom $\lambda$ može koristit za sve slučajeve uzoraka: numeričke, kategoričke ili hibridne.
 \section[Metode razvoja algoritama za grupiranje][metode razvoja]{Metode razvoja algoritama za grupiranje}
-U postupku modeliranja rješenja za problem grupiranja koristi se više metoda. Metoda za rješavanje ima puno i znastvenici intenzivno rade na pronalasku novih i objašnjenju kvalitete postojećih metoda. Danas je ovo područje izuzetno cjenjeno i svako novo saznanje može dovesti do revolucionarnog napretka u rješavanju izuzetno teških problema. Ipak, dvije metode su se pokazale kao općenitije i mogu poslužiti kao predložak za rješavanje većeg broja problema. Konkretno radi se o \textit{hijerarhijskom} i \textit{particijskom} pristupu rješavanju problema. Među ostalim metodama koje se danas ističu kao jako korisne pokazale su se : evolucijske metode, metode particioniranja grafa, metode bazirane na neuronskim mrežama, te metode s gradinjentnim spustom[liter]. U ovom radu obradit ćemo navedene najpoznatije metode, a od ostalih metoda obradit ćemo evolucijske. Također pokazat ćemo kako se komponente iz evolucijskih metoda mogu kombinirati sa particijskim pristupom, te će ta hibridna kombinacija biti glavna tema u nastavku ovog rada.
+U postupku modeliranja rješenja za problem grupiranja koristi se više metoda. Metoda za rješavanje ima puno i znastvenici intenzivno rade na pronalasku novih i objašnjenju kvalitete postojećih metoda. Danas je ovo područje izuzetno cjenjeno i svako novo saznanje može dovesti do revolucionarnog napretka u rješavanju izuzetno teških problema. Ipak, dvije metode su se pokazale kao općenitije i mogu poslužiti kao predložak za rješavanje većeg broja problema. Konkretno radi se o \textit{hijerarhijskom} i \textit{particijskom} pristupu rješavanju problema. Među ostalim metodama koje se danas ističu kao jako korisne pokazale su se : evolucijske metode, metode particioniranja grafa, metode bazirane na neuronskim mrežama, te metode s gradinjentnim spustom[liter]. U ovom radu obradit ćemo navedene najpoznatije metode, a od ostalih metoda obradit ćemo evolucijske metode kojima je posvećena cjelina \ref{chp:heuristike}.
 
 \subsubsection{Hijerarijsko grupiranje}
-
+U hijerarhijskom grupiranju na početku procesa podaci nisu unaprijed smješteni u klastere nego postoje dva načina inicijalne raspodjele podataka.
+\begin{enumerate}
+\item Svaki uzorak je klaster
+\item Svi uzorci su u jednom klasteru
+\end{enumerate}
+Postupak grupiranja može se odvijati u dva smjera ovisno o inicijalnoj raspodjeli podataka. Tako u sličaju $1.$ kada su uzorci svaki za sebe u posebnom klasteru postupak grupiranja nastavlja se spajanjem uzoraka sa bliskim svojstvima u jedan klaster. U svakom sljedećemo koraku ponavlja se postupak te se klasteri sa sličnim svojstvima spajaju u jedan novi klaster. Postupak prestaje kada odlučimo da nam je funkcija dobrote postigla željenu točnost ili smo postigli željeni broj klastera. Primjetimo ako postupak izvršimo bez uvjeta zaustavljanja dobit ćemo jedan klaster i zapravo podaci će biti u $2.$ inicijalno stanje. Ako krećemo iz $2.$ inicijalnog stanja to jest na početku su nam svi uzorci smješteni u jedan klaster onda u svakom sljedećem koraku radimo separaciju uzoraka. Saparacija uzoraka se provodi nad uzorcima koji se najviše razlikuju te se tako dobije više klastera. Postupak također nastavljamo dok ne dobijemo željenu točnost ili željeni broj klastera. Prva navedena metoda kada na početku imamo veliki broj klastera, točnije svaki uzorak je klaster, se naziva \textit{aglomerativni postupak}. Druga metoda se naziva \textit{razdvajajući postupak}. Iz opisa hijerarhijske metode vidimo kako u navedenim postupcima gradimo hijerarhiju te je se navedeni postupak može prikazati kao stablo gdje su čvorovi klasteri, a veze povezuju klastere koji su nastali ili su spojeni iz čvorova djece. Tako kreiran graf kao struktura stabla naziva se \textit{dendogram} i na slici \ref{fig:hijer_klas} prikazan je postupak grupiranja pomoću navedenog grafa.
+\newpage
+\begin{figure}[h!t]
+\centering \includegraphics[scale=0.4]{hijerahije_klasteri.jpg}
+\caption{Hijerarhijski proces grupiranja}
+\label{fig:hijer_klas}
+\end{figure}
+Hijerarhijsko grupiranje ima dva važna svojstva:
+\begin{itemize}
+\item Broj klastera ne mora biti unaprijed poznat
+\item Klasteri su neovisni o početnim uvjetima
+\end{itemize}
+Što se tiče vremenske i prostorne složenosti, ova metoda nije pogodna za  velike skupove podataka. Vremenska složenost je $O(n^2log(n))$, dok je prostorna $O(n^2)$. Također postupak grupiranja je statički, to jest ako je neki uzorak pripao nekom klasteru ne postoji mogućnost da prijeđe u neki drugi klaster na istom nivou hijerarhije.
+\subsubsection{Particijsko grupiranje}
+Za postupak particijskog grupiranja uzorke inicijalno podjelimo u skup klastera. Inicijalna podjela u prvom koraku u praksi se najčešće izvodi na slučajan način. Međutim, ako su nam unaprijed poznata neka saznanja o uzorcima moguće je već u prvom koraku usmjeriti uzorke u prave klastere. Inicijalna podjela se izvodi tako da se na slučajan način izabere $k$ uzoraka i oni predstavljaju klastere, nakon toga se svi ostali uzorci rasporede u $k$ klastera prema udaljenosti od izabranih predstavnika. Nakon inicijalne podjele za svaki klaster ponovo se odredi predstavnik klastera. Predstavnik je uzorak iz klastera koji predstavlja centar dotičnog klastera i s obzirom na njega se u klaster ubacuju novi uzorci. Uvodi se funkcja udaljenost uzoraka kako smo to definirali u cjelini \ref{sec:mat-mod} koja služi kao ocjena sličnosi. Postupak izvodimo iterativno tako da pogledamo sve uzorke i pridružimo ih predstavniku klastera kojem su najviše slični, to jest kojem su najbliže. Nakon postupka pridruživanja ponovo se bira novi predstavnik klastera i za sve podatke se pogleda sličnost s novim predstavnikom klastera. 
+Particijsko grupiranje može se generalno prikazati pseudokodom:\\
+\begin{algorithm}[H]
+ Na slučajan način izabrati $k$ predstavnika $m_i$, $i \in \{1,2,...,k\}$\;
+ \While{nije zadovoljen uvijet zaustavljanja}{
+  \For {svaki uzorak $Z_i$ iz skupa uzoraka}
+  {
+  	izračunaj $veza(m_j,Z_i)$ za svaki centroid i svaki uzorak pridruži\\
+  	centroidu sa najmanjom vrijednosti $veza$.\;
+  }
+  pronađi nove predstavnike klastera $m_j$ kao srednju vrijednost\\
+  svih elemenata klastera\;
+ }
+ \caption{Particijsko klasteriranje}
+\end{algorithm}
+Funkcija veza je funkicja koja u pozadini koristi neku od definiranih funkcija u \ref{sec:mat-mod}. Svaki uzorak će biti u klasteru od čijeg je predstavnika najmanje udaljen. Računanje novih predstavnika uzimanjem u obzir srednje vrijednosti ovisi o tipu problema i može se mjenjati s obzirom na zahtjeve.
+\begin{figure}[h!t]
+\centering \includegraphics[scale=0.5]{kmeansclustering.jpg}
+\caption{Particijski proces grupiranja}
+\label{fig:part_klast}
+\end{figure}
+\\Slika \ref{fig:part_klast} Prikazuje nekoliko iteracija praticijske metode klasteriranja. Možemo primjetiti kako se u svakoj iteraciji promijenio predstavnik klastera te kako s obzirom na novog predstavnika uzorci mjenjaju klaster. \\
+Kao što vidimo ovaj model grupiranja predviđa poznavanje broja klastera. Međutim složenost algoritma je znatno manja od prve navedene metode. Svaki prolazak treba $n$ koraka, po jedan korak za svaki uzorak, te je stoga složenost $O(n)$. U svakom koraku uzorci mogu promjeniti klaster i tako iterativnim postupkom do detalja profiniti particije. Ova metoda danas je najpoplarnija i u praksi se najviše koristi. U kombinaciji sa nekom od ostalih metoda kao što su evolucijske metode može se varirati i broj klastera te tako uvjetno popraviti jedini nedostatak ove metode. Danas najpoznatiji algoritam za grupiranje, algoritam k-sredina, je predstavnik particijskog grupiranja. U ovom radu naglasak će biti upravo na ovoj metodi te ćemo za nju kreirati većinu algoritama i testiranja.Između ostalog obradit ćemo i navedeni algoritam k-sredina. Opis dvije najpoznatije metode daje širok pregled na probleme koji se javljaju prilikom pokušaja grupiranja podataka i veliki je izazov postaviti model koji će minimizirati sve nedostatke.
 \section[Upravljanje podacima][upravljanje-podacima]{Upravljanje podacima}
 \label{sec:upravljanje-pod}
-\chapter[Metaheuristike]{Meta-heuristički pristup problemu}
-\section[Prirodom inspirirani algoritmi][prirodni-algoritmi]{Prirodom inspirirani algoritmi}
-\section{Reprezentacija podataka}
-\section{Analiza rezultata}
+Podaci nad kojima treba provesti algoritam grupiranja gotovo uvijek su jako komplicirani. Također nije poželjno stvoriti uzorke tako da se iskoriste sve značajke koji opisuju dani podatak. Naime, kada želimo spremiti podatke da bi ih mogli kasnije upotrjebiti u algoritmu potrebno je odabrati značajke koje su zajedničke svim podacima. Vrlo je bitno da značajki ima dovoljno da se podaci mogu separirati, ali da ih ne bude prevelik broj jer nam prostorna i vremenska složenost raste. Dakle lako je zaključiti da moramo postići kompromis između dvije osnovne komponente. Kada bi spremili sve značajke danog podatka i korisitili tako definirane uzorke svaki uzorak bi nam bio reprezentiran sa velikim brojem značajki. Gotovo nikada ne bi uspijeli postići da svi podaci imaju jednak broj značajki pa bi nam uzorci bili različitih duljina. Ako su različiitih duljina nemoguće je uspoređiati takve uzorke niti donijeti smislene zaključke. S druge strane ako odlučimo restringirati značajke tako da su svi jednake duljine kao onaj s najkraćom duljinom pojavit će se problem ne adekvatnih značajki. Sve u svemu moramo posebnu pažnju posvetiti odabiru značajki i kreiranju uzorka. Kako bi postupak bio jasan provet ćemo ga na jednom primjeru te navesti sve detalje na koje treba obratiti pažnju.\\
+\begin{exa}
+Pretpostavimo da su nam dani komentari o automobilima. Svaki komentar se sastoji od rečenica koje govore o kvaliteti lima automobila, o opremi automobila, o snazi motora, kvaliteti interjera,te dostupnosti na tržištu. Zadatak je iz komentara izdvojiti rečenice i svaku rečenicu staviti u klaster ovisno o tome o čemu rečenica govori.
+\\
+Komentar:\\
+Boja lima je idalne kvalitete, ne gubi intenzitet na suncu. Korozija je značajno zabilježena tek na modelima starijima od 10 godina. Izuzetno kvalitetan interijer sa opremom kao što je električni paket, sustav protiv proklizavanja, klima i ostala oprema. Automobil je dostupan u tri varijante kao sportback, limuzina, karavan. Cijena mu se na tržištu kreće oko 10000 eura.
+\\
+\end{exa}
+\textbf{Rješenje}:
+\\
+Prvi korak u konstrukciji uzorka je otkriti tip podatka kojeg će biti značajke. Konkretno za primjer kojeg promatramo prirodno je da značajke budu riječi. Kako je naš zadatak klasificirati rečenice promotrimo kao primjer prvu rečenicu.\\
+\textit{Boja lima je idalne kvalitete, ne gubi intenzitet na suncu.} Prvo možemo iz rečenice izbaciti veznike, zatim rječi kao što su \textit{ni}, \textit{ne}. Konačno dobijemo sljedeći vektor sa korjenima rječi $v_1=(boja,lim,idealan,kvaliteta,gubi,intenzitet,sunce)$. Parsiranjem i čišćenjem druge rečenice dobijemo vektor $v_2=(korozija,znacajno,zabiljezena,modelima,stariji,10,godina)$. Prva i druga rečenica govore o kvaliteti lima, imaju sedam značajki ali kao što možemo primjetiti niti jedna značajka od $v_1$ se ne podudara sa značajkama iz $v_2$. Svaki algoritam za grupiranje sa standardnim funkcijama koje mjere veze odnosno sličnost podataka neće prepoznati ove dvije rečenice kao uzorke iz istog klastera. Prvi korak u rješavanju nastalog problema je kako prepoznati značajke specifične za određenu rečenicu. Ovaj postupak nema egzaktan odgovor i u praksi se dizajneru rješenja prepušta da analizira podatke i izbaci rječi za koje procijeni da su previše specifične. Matematički ovaj problem se rješava računanjem frekvencija pojavljivanja rječi, te se izbacuju one s najmanjom frekvencijom. Pogledajmo ponovo vektore značajki. U $v_1$ možemo primjetiti kako su rječi \textit{idealna}, \textit{kvaliteta}, \textit{gubi} općenite i nikako ne reprezentiraju određenu kategoriju. U $v_2$ vidimo da su sve riječi osim \textit{korozija} općenite te nikako ne opisuju lim automobila. Kada izbacimo sve nepoželjnje rječi dobijemo sljedeća dva vektora
+\[
+v_1 =(boja, lim, intenzitet, sunce)
+\]
+\[
+v_2 = (korozija)
+\]
+Međutim opet imamo problem da vektori uzoraka nisu iste duljine te nemaju zajedničkih podataka. U praki ovaj problem se rješava tako da se sve značajke napišu kao uređena $n$-torka te se kreiraju vektori uzoraka koji predstavljaju pojavljivanje određene značajke. U konkretnom slučaju radi se o binarnom vektoru gdje 1 predstavlja da se značajka pojavila u uzorku, a 0 da nije.
+\[
+(boja,lim,intenzitet,sunce, korozija)
+\]
+\[v_1=(1,1,1,1,0)\]
+\[v_2=(0,0,0,0,1)\]
+Navedenim postupkom dobili smo jednistveno zapisane sve rečenice kao vektor on pet komponenti. Dakle duljina je ista i skup značajki koje promaramo je isti za sve uzorke. Isti postupak provedemo za ostale rečenice, izvučemo iz njih najbitnije značajke te iz spojimo sa već uređenom petorkom i dobijemo traženu uređenu $11$-torku koja predstavlja sve rečenice iz komentara.
+\[ (boja, lim, intenzitet, sunce, korozija, interjer, oprema, dostupan, varijante, cijena, trziste) \]
+Svaku rečenicu prikažemo kao uzorak
+\begin{itemize}
+\item Boja lima je idalne kvalitete, ne gubi intenzitet na suncu\\uzorak = $(1,1,1,1,0,0,0,0,0,0,0)$
+\item Korozija je značajno zabilježena tek na modelima starijima od 10 godina\\
+uzorak = $(0,0,0,0,1,0,0,0,0,0,0)$
+\item Izuzetno kvalitetan interijer sa opremom kao što je električni paket, sustav protiv proklizavanja, klima i ostala oprema.\\
+uzorak=$(0,0,0,0,0,1,1,0,0,0,0)$
+\item  Automobil je dostupan u tri varijante kao sportback, limuzina, karavan. Cijena mu se na tržištu kreće oko 10000 eura.\\
+uzorak=$(0,0,0,0,0,0,0,1,1,1,1)$
+\end{itemize}
+Ovako kompaktno zapisani podaci zauzimaju puno manje memorije, lakši su za pohranu ali i za analizu. Težine koje smo dodali u funkciju sličnosti u ovom trenutku ima bitnu ulogu. Na primjer ako nam se pojavi riječ lim ili korozija sasvim je očito da se radi o kvaliteti lima te ako veću pažnu posvetimo tim značajkama veća je vjerojatnost da na kraju pripadaju ispravnom klasteru. Analogno ako promatramo riječ tržište, jedina prihvatljiva iterpretacija je da se ta riječ pojavljuje samo u rečenicama koje govore o kretanju na tržištu te i ovoj značajki treba pridjeliti dodatnu važnost. S druge strane riječ sunce može se pojaviti u raznim kontekstima, njegova je uloga bitna ali nikako ne smije biti krucijalan u odabiru klase te mu se važnost treba restringirati.
+\chapter[Evolucijske metode]{Evolucijske metode}
+\label{chp:heuristike}
+\section[Meta-heuristike][Meta-heuristike]{Meta-heuristike}
+\section{Prirodom inspirirani algoritmi}
+\section{Genetski algoritam}
 \chapter{Poznati algoritmi i analiza}
 \section{Alg 1}
 \section{Alg 2}

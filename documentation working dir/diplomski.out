@@ -7,10 +7,10 @@
 \BOOKMARK [1][-]{section.1.2}{Matematicko modeliranje problema}{chapter.1}% 7
 \BOOKMARK [1][-]{section.1.3}{Metode razvoja algoritama za grupiranje}{chapter.1}% 8
 \BOOKMARK [1][-]{section.1.4}{Upravljanje podacima}{chapter.1}% 9
-\BOOKMARK [0][-]{chapter.2}{Metaheuristike}{}% 10
-\BOOKMARK [1][-]{section.2.1}{Prirodom inspirirani algoritmi}{chapter.2}% 11
-\BOOKMARK [1][-]{section.2.2}{Reprezentacija podataka}{chapter.2}% 12
-\BOOKMARK [1][-]{section.2.3}{Analiza rezultata}{chapter.2}% 13
+\BOOKMARK [0][-]{chapter.2}{Evolucijske metode}{}% 10
+\BOOKMARK [1][-]{section.2.1}{Meta-heuristike}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.2}{Prirodom inspirirani algoritmi}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.3}{Genetski algoritam}{chapter.2}% 13
 \BOOKMARK [0][-]{chapter.3}{Poznati algoritmi i analiza}{}% 14
 \BOOKMARK [1][-]{section.3.1}{Alg 1}{chapter.3}% 15
 \BOOKMARK [1][-]{section.3.2}{Alg 2}{chapter.3}% 16
@@ -26,4 +26,4 @@
 \BOOKMARK [0][-]{chapter.6}{Ostale moderne metode}{}% 26
 \BOOKMARK [1][-]{section.6.1}{Programiranje na grafickim karticama}{chapter.6}% 27
 \BOOKMARK [1][-]{section.6.2}{MapReduce metoda}{chapter.6}% 28
-\BOOKMARK [0][-]{chapter*.13}{Bibliografija}{}% 29
+\BOOKMARK [0][-]{chapter*.14}{Bibliografija}{}% 29

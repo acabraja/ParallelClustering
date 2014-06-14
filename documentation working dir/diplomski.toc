@@ -11,32 +11,33 @@
 \contentsline {subsubsection}{Uzorak s hibridnim zna\IeC {\v c}ajkama}{8}{section*.5}
 \contentsline {section}{\numberline {1.3}Metode razvoja algoritama za grupiranje}{9}{section.1.3}
 \contentsline {subsubsection}{Hijerarijsko grupiranje}{9}{section*.6}
-\contentsline {section}{\numberline {1.4}Upravljanje podacima}{9}{section.1.4}
-\contentsline {chapter}{\chapternumberline {2}Metaheuristike}{11}{chapter.2}
-\contentsline {section}{\numberline {2.1}Prirodom inspirirani algoritmi}{11}{section.2.1}
-\contentsline {section}{\numberline {2.2}Reprezentacija podataka}{11}{section.2.2}
-\contentsline {section}{\numberline {2.3}Analiza rezultata}{11}{section.2.3}
-\contentsline {chapter}{\chapternumberline {3}Poznati algoritmi i analiza}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}Alg 1}{13}{section.3.1}
-\contentsline {section}{\numberline {3.2}Alg 2}{13}{section.3.2}
-\contentsline {section}{\numberline {3.3}Alg 3}{13}{section.3.3}
-\contentsline {chapter}{\chapternumberline {4}Tehnike za paralelizaciju algoritama}{15}{chapter.4}
-\contentsline {section}{\numberline {4.1}Osnovni pojmovi MPI tehnologije}{15}{section.4.1}
-\contentsline {section}{\numberline {4.2}Topologija}{15}{section.4.2}
-\contentsline {section}{\numberline {4.3}Prednosti paralelizacije i cijena komunikacije}{15}{section.4.3}
-\contentsline {chapter}{\chapternumberline {5}Konstrukcija paralelnih algoritama za grupiranje}{17}{chapter.5}
-\contentsline {section}{\numberline {5.1}Algoritam 1 heurisika}{17}{section.5.1}
-\contentsline {subsection}{Opis}{17}{section*.7}
-\contentsline {subsection}{Analiza}{17}{section*.8}
-\contentsline {section}{\numberline {5.2}Algoritam 2 iterativno}{17}{section.5.2}
-\contentsline {subsection}{Opis}{17}{section*.9}
-\contentsline {subsection}{Analiza}{17}{section*.10}
-\contentsline {section}{\numberline {5.3}Algoritam 3 hibrid}{17}{section.5.3}
-\contentsline {subsection}{Opis}{17}{section*.11}
-\contentsline {subsection}{Analiza}{17}{section*.12}
-\contentsline {chapter}{\chapternumberline {6}Ostale moderne metode}{19}{chapter.6}
-\contentsline {section}{\numberline {6.1}Programiranje na grafi\IeC {\v c}kim karticama}{19}{section.6.1}
-\contentsline {section}{\numberline {6.2}MapReduce metoda}{19}{section.6.2}
-\contentsline {chapter}{Bibliografija}{21}{chapter*.13}
+\contentsline {subsubsection}{Particijsko grupiranje}{10}{section*.7}
+\contentsline {section}{\numberline {1.4}Upravljanje podacima}{12}{section.1.4}
+\contentsline {chapter}{\chapternumberline {2}Evolucijske metode}{15}{chapter.2}
+\contentsline {section}{\numberline {2.1}Meta-heuristike}{15}{section.2.1}
+\contentsline {section}{\numberline {2.2}Prirodom inspirirani algoritmi}{15}{section.2.2}
+\contentsline {section}{\numberline {2.3}Genetski algoritam}{15}{section.2.3}
+\contentsline {chapter}{\chapternumberline {3}Poznati algoritmi i analiza}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}Alg 1}{17}{section.3.1}
+\contentsline {section}{\numberline {3.2}Alg 2}{17}{section.3.2}
+\contentsline {section}{\numberline {3.3}Alg 3}{17}{section.3.3}
+\contentsline {chapter}{\chapternumberline {4}Tehnike za paralelizaciju algoritama}{19}{chapter.4}
+\contentsline {section}{\numberline {4.1}Osnovni pojmovi MPI tehnologije}{19}{section.4.1}
+\contentsline {section}{\numberline {4.2}Topologija}{19}{section.4.2}
+\contentsline {section}{\numberline {4.3}Prednosti paralelizacije i cijena komunikacije}{19}{section.4.3}
+\contentsline {chapter}{\chapternumberline {5}Konstrukcija paralelnih algoritama za grupiranje}{21}{chapter.5}
+\contentsline {section}{\numberline {5.1}Algoritam 1 heurisika}{21}{section.5.1}
+\contentsline {subsection}{Opis}{21}{section*.8}
+\contentsline {subsection}{Analiza}{21}{section*.9}
+\contentsline {section}{\numberline {5.2}Algoritam 2 iterativno}{21}{section.5.2}
+\contentsline {subsection}{Opis}{21}{section*.10}
+\contentsline {subsection}{Analiza}{21}{section*.11}
+\contentsline {section}{\numberline {5.3}Algoritam 3 hibrid}{21}{section.5.3}
+\contentsline {subsection}{Opis}{21}{section*.12}
+\contentsline {subsection}{Analiza}{21}{section*.13}
+\contentsline {chapter}{\chapternumberline {6}Ostale moderne metode}{23}{chapter.6}
+\contentsline {section}{\numberline {6.1}Programiranje na grafi\IeC {\v c}kim karticama}{23}{section.6.1}
+\contentsline {section}{\numberline {6.2}MapReduce metoda}{23}{section.6.2}
+\contentsline {chapter}{Bibliografija}{25}{chapter*.14}
 \select@language {croatian}
 \select@language {croatian}
