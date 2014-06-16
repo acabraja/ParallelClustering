@@ -14,7 +14,7 @@
 % opcija utf8 za unicode (unix, linux, mac)
 % opcija cp1250 za windowse
 \usepackage[utf8]{inputenc}  % ukoliko se koristi XeLaTeX onda je \usepackage{xunicode}\usepackage{xltxtra}
-\usepackage[]{algorithm2e}
+\usepackage[ruled, vlined]{algorithm2e}
 % Stil za diplomski, unutra je ukljucena podrska za hrvatski jezik
 \usepackage{diplomski}
 % bibliografija na hrvatskom
@@ -72,6 +72,7 @@
 \section[Pregled rada][pregled]{Pregled rada}
 
 \chapter[Modeliranje problema grupiranja][MODELIRANJE]{Modeliranje problema grupiranja}	
+\label{chp:modeliranje}
 % ukoliko naslov nije jako dugacak dovoljno je samo \chapter{Naslov poglavlja} 
 
 \section[Osnovni pojmovi][os-pojmovi]{Osnovni pojmovi}
@@ -156,6 +157,7 @@ Prema napomeni \ref{nap:ZC} lako se zaključi da se problem grupiranja svodi na 
 Uvedena matematička notacija za problem grupiranja omogućuje da postavimo model za rješavanje, koji je u kasnijem razmatranju pogodan za modeliranje i implementaciju.\\
 Neka je  $\mathcal{C} = \{ \mathbf{C}^1, \mathbf{C}^2, ..., \mathbf{C}^{N(n,k)}  \}$ skup svih mogućih rješenja danog problema grupiranja, gdje je
 \begin{equation}
+\label{equ:grup_rjs}
 N(n,k) = \frac{1}{k!}\sum_{i=1}^{k}(-1)^i{{k}\choose{i}}(k-i)^i
 \end{equation}
 broj mogućih rješenja za raspodjelu $n$ uzoraka u $k$ klastera. Rješenje problema svodi se na optimizacijski problem
@@ -250,7 +252,7 @@ Hijerarhijsko grupiranje ima dva važna svojstva:
 Što se tiče vremenske i prostorne složenosti, ova metoda nije pogodna za  velike skupove podataka. Vremenska složenost je $O(n^2log(n))$, dok je prostorna $O(n^2)$. Također postupak grupiranja je statički, to jest ako je neki uzorak pripao nekom klasteru ne postoji mogućnost da prijeđe u neki drugi klaster na istom nivou hijerarhije.
 \subsubsection{Particijsko grupiranje}
 Za postupak particijskog grupiranja uzorke inicijalno podjelimo u skup klastera. Inicijalna podjela u prvom koraku u praksi se najčešće izvodi na slučajan način. Međutim, ako su nam unaprijed poznata neka saznanja o uzorcima moguće je već u prvom koraku usmjeriti uzorke u prave klastere. Inicijalna podjela se izvodi tako da se na slučajan način izabere $k$ uzoraka i oni predstavljaju klastere, nakon toga se svi ostali uzorci rasporede u $k$ klastera prema udaljenosti od izabranih predstavnika. Nakon inicijalne podjele za svaki klaster ponovo se odredi predstavnik klastera. Predstavnik je uzorak iz klastera koji predstavlja centar dotičnog klastera i s obzirom na njega se u klaster ubacuju novi uzorci. Uvodi se funkcja udaljenost uzoraka kako smo to definirali u cjelini \ref{sec:mat-mod} koja služi kao ocjena sličnosi. Postupak izvodimo iterativno tako da pogledamo sve uzorke i pridružimo ih predstavniku klastera kojem su najviše slični, to jest kojem su najbliže. Nakon postupka pridruživanja ponovo se bira novi predstavnik klastera i za sve podatke se pogleda sličnost s novim predstavnikom klastera. 
-Particijsko grupiranje može se generalno prikazati pseudokodom:\\
+Particijsko grupiranje može se generalno prikazati pseudokodom:\\ \\
 \begin{algorithm}[H]
  Na slučajan način izabrati $k$ predstavnika $m_i$, $i \in \{1,2,...,k\}$\;
  \While{nije zadovoljen uvijet zaustavljanja}{
@@ -264,6 +266,7 @@ Particijsko grupiranje može se generalno prikazati pseudokodom:\\
  }
  \caption{Particijsko klasteriranje}
 \end{algorithm}
+
 Funkcija veza je funkicja koja u pozadini koristi neku od definiranih funkcija u \ref{sec:mat-mod}. Svaki uzorak će biti u klasteru od čijeg je predstavnika najmanje udaljen. Računanje novih predstavnika uzimanjem u obzir srednje vrijednosti ovisi o tipu problema i može se mjenjati s obzirom na zahtjeve.
 \begin{figure}[h!t]
 \centering \includegraphics[scale=0.5]{kmeansclustering.jpg}
@@ -314,8 +317,65 @@ Ovako kompaktno zapisani podaci zauzimaju puno manje memorije, lakši su za pohr
 \chapter[Evolucijske metode]{Evolucijske metode}
 \label{chp:heuristike}
 \section[Meta-heuristike][Meta-heuristike]{Meta-heuristike}
+Kada govorimo o teškim problemima, zapravo govorimo o problemima čiji skup rješenja eksponencijalo raste i čak ni današnja super brza računala ne mogu ispitati sva moguća rješenja kako bi pronašli ono najbolje. Problemi za koje ne možemo u realnom vremenu pronaći egzaktno rješenje nazivaju se NP-teški problemi. Ovako neformalna definicija ostavlja mnoga pitanja kao na primjer: što je to rješenje u realnom vremenu? U ovom radu nećemo promatrati složenost algoritama, kao ni konstrukciju modela za izračunavanje istih, ali zbog potpunosti i razumijevanja težine problema grupiranja i opravdanosti uvođenja heuristika definirat ćemo samo nužne pojmove.
+\begin{defn}
+Prihvatljivo vrijeme je vrijeme koje može proći a da rješenje još uvijek bude aktualno.
+\end{defn}
+\begin{defn}
+Rješenje u realnom vremenu je rješenje čiji se rezultat može upotrijebiti u prihvatljivom vremenu od trenutka pokretanja algoritma koji traži rješenje.
+\end{defn}
+\begin{defn}
+NP-teški problemi su problemi za koje ne možemo izračunati egzaktno rješenje u realnom vremenu.
+\end{defn}
+
+Promotrimo sada problem grupiranja, za koji pokušavamo pronaći i analizirati dobar algoritam. Poblem je trivijalno rješiv iscrpnom pretragom. Iscrpna pretraga je proces ispitivanja svih mogućih rješenja danog problema. U našem slučaju to bi značilo ispitivanje svih mogućih kombinacija $n$ uzoraka u $k$ klastera. Predpostavimo da i mamo samo dva moguća klastera i $n$ uzoraka. Za svaki uzorak možemo odlučiti na dva načina, tako da ga pridružimo prvom ili drugom klasteru. Isti postupak možemo procesti za svaki uzorak pa ugrubo imamo sljedeću jednakost
+\[
+	\underbrace{2\cdot 2\cdot 2\cdots \cdot2}_\text{n puta} = 2^n
+\]
+Iako je navedena ocjena za broj mogućih rješenja jako gruba ipak govori o redu veličina danog problema. Već za $k=2$ problem grupiranja je težak problem jer imamo $2^n$ mogućnosti gdje smjestiti uzorke. Upravo iz navedenih razloga prilikom rješavanja problema grupiranja nikada se ne upotrebljava iscrpna pretraga osim možda u nekim slučajevima izuzetno malog skupa podataka. Osim iterativnih metoda navedenih u poglavlju \ref{chp:modeliranje}, kada tražimo optimalno ili suboptimalno rješenje problemu je moguće pristupiti i na heruistički način. Heuristike ne daju nikakvu garanciju na kvalitetu rješenja, za razliku od iterativnih metoda koje u svakom koraku poboljšaju već postojeće rješenje. Međutim kod heurisika je prednost što lakše izbjegavaju lokalne minimume i na pseudo-slučajan način sa skokovima traže rješenje u prostoru svih mogućih rješenja.
+\begin{defn}
+Algoritmi koji pronalaze rješenje koje je zadovoljavajuće dobro, te imaju polinomnu složenost izvršavanja s obzirom na ulazni skup podataka nazivaju se heuristike.Heuristike ne daju nikakvu garanciju na kvalitetu rješenja
+\end{defn}
+Zadovoljavajuće dobro rješenje je rješenje koje zadovoljava unaprijed zadanu točnost. Iako u definiciji navodimo kako heuristike ne daju nikaku garanciju oko kvalitete rješenja u praksi su se pokazale kao vrlo korisne i stabline. Stablinost se odnosi upravo na rješenje, te u praksi gotovo uvijek daju rješenje koje je jako blizu optimalnog. Garancija oko kvalitete rješenja nije moguća upravo zbog pseudo-slučajnih elemenata koji su sastavni dio heurističkih algoritama. Naime, prilikom analize algoritma koriste si se tok algoritma kao glavni alat za dokaz korektnosti, dok kod heuristika nema glavnog toka u klasičnom smislu jer pseudo-slučajnim elementima izvodimo unaprijed nepredvidive skokove.
+\begin{defn}
+Meta-heurisike su skup algoritamskih koncepata koji služe za rješavanje odrđenog skupa sličnih problema. Za meta-heuristike su poznati neki rezultati korektnosti te su takvi algoritmi generalizirani za širu upotrebu.
+\end{defn}
+Za meta-heuristike možemo reći da su specijalizirane heuristike. Dva su osnovna pristupa rješavanju problema pomoću heurisika.
+\begin{itemize}
+\item Konstrukcijski algoritmi 
+\item Algoritmi lokalne pretrage
+\end{itemize}
+Primjenom konstrukcijskih algoritama rješenje se gradi dio po dio, najčešće bez mogućnosti povratka sve dok se ne izgradi konačno rješenje. Kod algoritama lokalne pretrage izabere se jedno rješenje i ono se iterativno poboljšava dok ne zadovolji uvjete. Ideja je da se baziramo oko nekog relativno dobrog rješenja i pretražujemo njemu slična kako bi našli najbolje ili dovoljno dobro rješenje. Heuristički postupak ukratko se može opisati u nekoliko koraka.
+\begin{itemize}
+\item Slučajno izaberi neko rješenje
+\item Ako je rješenje jako loše ponovo biraj
+\item Ako je rješenje skoro dobro poboljšaj 
+\item Ako je rješenje dobro stani
+\end{itemize}
+Iz ovih nekoliko koraka vidimo kako se heuristike ponašaju na vrlo jednostavan način. Ako je neko rješenje jako loše ono ne može opstati jer će njegovo mjesto zauzeti neko bolje rješenje. Ako je rješenje preživilo prvu selekciju onda od njega pokušamo napraviti nešto bolje rješenje. Navedeni postupak se zapravo svakodnevno javlja u prirodi kao selekcijski postupak jedinki. Loše jedinke izumiru, dobe ostaju, razmnožavaju se i tako nastaju sve bolje i kvalitetnije jedinke. Upravo navedena inspiracija bit će vodilja kroz daljnji izbor algoritama za heuristike opisanih u sljedećoj cjelini.
 \section{Prirodom inspirirani algoritmi}
+Glavna pitanje prilikom kreiranja heurističkog rješenja je kako provesti postupak selekcije dobrih, kako stvoriti nova rješenja ako je neko rješenje dovoljno dobro, te konačno kako reprezentirati podatke. Rješenja na upravo navedene probleme možemo pronaći u prirodi. Kada govorimo o algoritmima inspiriranim prirodnim procesima mislimo na tri osnovna tipa algoritama. Konkretno radi se o evolucijskim, procesnim i algoritmima rojeva. Procesni algoritmi su algoritmi koji simuliraju procese u prirodi. Jedan od takvih procesa je kaljenje metala. Metal se zagrijava na određenu temparaturu te se postepeno hladi i tokom procesa hlađenja mjenja se struktura metala i tako se stvara poželjna struktura legure. Navedeni tip algoritama opisuje algoritme lokalne pretrage. Postoje još mnogi algoritmi ovog tipa [liter], ali upravo navedeni je najpoznatiji predstavnik. Što se algoritama rojeva tiče to su algoritmi koji simuliraju neki proces uglavnom mrava i pčela. Kako su obe navedene vrste poznate kao jako radno orjentiranje njihovi procesi se vrlo često odvijaju iterativno. Tako naprimjer postoji mravlji algoritam koji simulira put kojim mravi putuju tokom radne akcije. Naime, mravi kada prolaze nekim putem ostavljaju za sobom trag feromona tako da dugi mravi mogu ići istim putem. Što više mravi prođe određenim putem to je miris feromona jači te tako privlači i druge mrave na taj isti put. Ako rješenje optimizacijskog rješenja reprezentiramo kao jedan put kojima mravi mogu putovati možemo kreirati dobar algoritam koji rješava dani problem. Osim mravljeg algoritma ističe se algoritam roja pčela[liter]. Evolucijski algoritmi su oni koji su u ovom radu puno zanimljiviji i algoritmi za grupiranje podataka nerjetko imaju elemente upravo ove metode. Evolucijski algoritmi simuliraju životni ciklus neke populacije. Razvoj algoritma može se prikazati ako životni ciklus jedinke neke populacije. Pređimo tako na slučaj kada su rješenja skoro dobra. Pretpostavimo da svako rješenje predstavlja jednu jedinku, to znači da u prirodi imamo jedinku koja je spremna opstati. Nakon što selektiramo sve jedinke koje su sposobne opstatit nužan je proces razmnožavanja. Prilikom razmnožavanja dobriz jediniki, to jest onih koje su opstale, nastaju nove jedinke sa dobrim genetskim naterijalom. Upravo u ovom evolucijskom korako, ako su jedinke rješenja, vidimo analogan proces traženju poboljšanja rješenja. Također postoji mogućnost da neke jedike prilikom nastanka mutiraju i tako znatno promjene svoje svojstvo. Ova mogućnost u rješavanju optimizacijskog problema ima dva značenja. Prvo značenje je pozitivno i pomaže kako bi izašli iz lokalnog optimuma. Naime, kada jednom imamo dva skoro dobra rješenja tada smo vrlo vjerojatno u nekom lokalnom optimumu i daljnim postupkom razmnožavanja samo onih koji su jako dobri sve više se približavamo sličnim rješenjima iz potprostora lokalnog optimuma. Mutacija se nameće kao logično rješenje bjega iz lokalnog optimuma. Mutiranjem jedinka mjenja svojstva te tako postaje ili puno gora ili barem jednako dobra kao neko već postignuto rješenja, ali ključna stavka je da mutirano rješenje vrlo često nije iz područja lokalnog optimuma gdje je nastalo. Kod evolucijskih algoritama ističe se nekoliko ključnih koraka.
+\begin{itemize}
+\item Svori inicijalnu populaciju.
+\item Izaberi najbolje iz populacije, ostale obriši.
+\item Kako bi postigi ravnotežu razmnožavaj preostale jedinke do popunjenja populacije.
+\item Mutiraj neke jedinke
+\item Ponovi postupak selekcije
+\item Ako neka jedinka iz trenutne populacije zadovoljava tražene uvijete stani.
+\end{itemize}
+Najpoznatiji predstavnici navedene metode su \textit{genetski algoritam-GA}, \textit{umjetni imunološki algoritam-IA}[liter] i \textit{algoritam diferencijske evolucije-DE}[liter]. Ostalo je objasniti što su to jedinke, kako rješenja predstavljano kao jedinke, te kako ćemo obavljati selekciju unutar populacije. Navedena pitanja rješavaju se slično za sve algoritme, ali zbog posebnosti svakog algoritma postoje i specifičnosti tako da generalitiranog postupka za prikaz jedinki i selekciju nema. Kako ćemo u ovom radu posebnu pažnju posvetiti genetskim algoritmima za njih ćemo prikazati postupak kreiranja rješenja, te kako provesti sve procese evolucijskog razvoja nad tako kreiranim rješenjima.
+
 \section{Genetski algoritam}
+Ideja za razvoj algoritma temelji se na Darwinovoj teoriji o postanku vrste[liter]. Teorija se temelji na pet postavki:
+\begin{enumerate}
+\item plodnost vrste - potomaka uvijek ima dovoljno
+\item održivost - veličina populacije je uvijek stalna
+\item količina hrane je ograničena
+\item prilikom procesa razmnožavanja nema potomaka jednakih roditeljima
+\item najveći dio varijacije prenosi se nasljeđem
+\end{enumerate}
+Postoji puno izvedbi genetskog algoritma, ali generalna ideja je sljedeća. Algoritam radi s populacijom jedinki. Svaka jedinka jedno je moguće rješenje danog problema. U našem slučaju svaka jedinka je jedna particija rješenja. Jedinke u genetskom algoritmu često se nazivaju kromosomi. U kasnijim razmatranjima intuitivnije je govoriti o križanju i mutaciji kromosoma. Svakoj jedinki računa se funkcija dobrote. U našem slučaju funkcija dobrote je suma razlika svih jedinki u pojedniom klasteru. Jednike sa manjom vrijednosti dane funkcije su bolje jednike. Nakon računanja dobrote svih jedinki izvršava se postupak selekcije. Selekcija je postupak izbora jedinki koje imaju ulogu roditelja u novoj populaciji. Jedinke djeca nastaju operatorom križanja i mutacije. Ciklus se nastavlja zadani broj puta.
+Iz navedenog opisa možemo izdvojiti četiri osnovne operacije koje se izvršavju u svakom ciklusu: \textit{selekcija}, \textit{funkcija dobrote}, \textit{križanje}, \textit{mutacija}. 
 \chapter{Poznati algoritmi i analiza}
 \section{Alg 1}
 \section{Alg 2}

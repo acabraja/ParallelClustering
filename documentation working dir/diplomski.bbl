@@ -1,4 +1,4 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
   \providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
   \providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
   % \MRhref is called by the amsart/book/proc definition of \MR.
@@ -19,5 +19,14 @@
   \providebibliographyfont{numeral}{}%
   \providecommand\btxprintamslanguage[1]{\ (#1)}
   \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
+
+\expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
+\bibitem {Dutkay:2009}
+\btxnamefont {D.\btxfnamespacelong E. \btxlastnamefont {Dutkay}}, \btxnamefont
+  {D.~\btxlastnamefont {Han}}, \btxnamefont {Q.~\btxlastnamefont
+  {Sun}}\btxandcomma {} \btxandlong {} \btxnamefont {E.~\btxlastnamefont
+  {Weber}}, \btxjtitlefont {\btxifchangecase {Hearing the hausdorff
+  dimension}{Hearing the Hausdorff dimension}},  (2009), {\latintext
+  \btxurlfont{http://arxiv.org/abs/0910.5433}}.
 
 \end{thebibliography}

@@ -2,48 +2,50 @@ This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: diplomski.aux
 The style file: babamspl.bst
-I found no \citation commands---while reading file diplomski.aux
 Database file #1: diplomski.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 0 entries,
+Warning--empty language in Dutkay:2009
+Warning--missing journal name in Dutkay:2009
+Warning--missing pages in Dutkay:2009
+You've used 1 entry,
             2664 wiz_defined-function locations,
-            595 strings with 5648 characters,
-and the built_in function-call counts, 58 in all, are:
-= -- 0
-> -- 0
+            601 strings with 5786 characters,
+and the built_in function-call counts, 522 in all, are:
+= -- 25
+> -- 23
 < -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
++ -- 9
+- -- 8
+* -- 97
+:= -- 78
+add.period$ -- 1
+call.type$ -- 1
+change.case$ -- 7
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+cite$ -- 4
+duplicate$ -- 22
+empty$ -- 37
+format.name$ -- 20
+if$ -- 77
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 23
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 1
+missing$ -- 2
+newline$ -- 27
+num.names$ -- 2
+pop$ -- 10
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 6
 quote$ -- 0
-skip$ -- 1
+skip$ -- 7
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 5
+swap$ -- 12
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 22
-(There was 1 error message)
+type$ -- 4
+warning$ -- 3
+while$ -- 2
+width$ -- 2
+write$ -- 29
+(There were 3 warnings)
